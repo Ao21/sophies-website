@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+@import "./../utils/mixins";
+
+body {
+  font-family: $font-family-sans;
+  font-weight: 400;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  color: inherit;
+}
+
+h1 { @include type-scale(3); }
+h2 { @include type-scale(2); }
+h3 { @include type-scale(1); }
+h4 { @include type-scale(0); }
+h5 { @include type-scale(0); }
+h6 { @include type-scale(0); }
+
+p {
+  margin-top: 0;
+  margin-bottom: $spacing-whole;
+  @include type-scale(0);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover { text-decoration: underline; }
+}

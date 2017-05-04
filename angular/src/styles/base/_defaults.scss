@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Page
+   ========================================================================== */
+
+@import './../utils/mixins';
+/**
+ * 1. Set the global `box-sizing` state to `border-box`.
+ * @link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ * @link http://paulirish.com/2012/box-sizing-border-box-ftw
+ * 2. Remove outline styles from all the elements.
+ */
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box; /* [1] */
+    outline: none;          /* [2] */
+  }
+}
+
+/**
+ * High-, page-level styling.
+ *
+ * 1. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 2. Fonts on OSX will look more consistent with other systems that do not
+ *    render text using sub-pixel anti-aliasing.
+ * 3. Prevent certain mobile browsers from automatically zooming fonts.
+ * 4. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ * 5. Ensure the page always fills at least the entire height of the viewport.
+ * 6. Make a soft and nice highlight on the selection.
+ */
+
+html {
+  @include type-scale(0);              /* [1] */
+  -webkit-font-smoothing: antialiased; /* [2] */
+  -moz-osx-font-smoothing: grayscale;  /* [2] */
+  text-size-adjust: 100%;              /* [3] */
+  overflow-y: scroll;                  /* [4] */
+  min-height: 100%;                    /* [5] */
+
+  ::selection {
+    background-color: $color-background-light
+  }
+}
+
+/**
+ * As well as using normalize.css, it is often advantageous to remove all
+ * margins from certain elements.
+ */
+body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, code,
+dl, dd, ol, ul,
+form, fieldset, legend,
+figure,
+table, th, td, caption,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Define vertical rhythm for all block level elements.
+ */
+h1, h2, h3, h4, h5, h6, hgroup,
+p, address, blockquote, figure,
+form, noscript, fieldset,
+ul, ol, dd, dl,
+pre, table, hr {
+  margin-bottom: $spacing-whole;
+}
+
+/**
+ * Give a help cursor to elements that give extra info on `:hover`.
+ */
+abbr[title],
+dfn[title] { cursor: help; }
+
+/**
+ * Remove underlines from potentially troublesome elements.
+ */
+u,
+ins { text-decoration: none; }
+
+/**
+ * Apply faux underlines to inserted text via `border-bottom`.
+ */
+ins { border-bottom: 1px solid; }
+
+/**
+ * Makes the <hr/> border thiner.
+ */
+hr {
+  border: none;
+  border-bottom: 1px solid $color-gray-xl;
+}
