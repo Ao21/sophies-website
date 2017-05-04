@@ -1,0 +1,41 @@
+version: '2'
+services:
+    web:
+      build: ./server
+      ports:
+        - 3000:80
+      volumes:
+        - /var/log
+        - ./server/templates:/usr/share/nginx/templates
+        - ./server/config/elementapi.php:/usr/share/nginx/config/elementapi.php
+      links:
+        - postgres
+        - memcached
+      # env vars are replaced in .env
+      environment:
+        # Set locale to UTF-8 (https://oncletom.io/2015/docker-encoding/)
+        LANG: C.UTF-8
+
+        # MEMCACHED is linked
+        MEMCACHED_HOST: memcached
+
+        # DB is linked
+        DB_HOST: postgres
+        DB_NAME: web
+        DB_PORT: 5432
+        DB_USER: sophie
+        DB_PASS: secret
+
+    postgres:
+      image: postgres:9.6.2
+      environment:
+        POSTGRES_USER: sophie
+        POSTGRES_PASSWORD: secret
+        POSTGRES_DB: web
+        POSTGRES_INITDB_ARGS: "-E UTF8"
+      volumes:
+        # Persistent data
+        - ./server/db:/var/lib/postgresql/data
+
+    memcached:
+      image: memcached:1.4.36
