@@ -1,0 +1,36 @@
+@import "./../../../../styles/utils/mixins";
+:host,
+.header {
+  position: fixed;
+  position: sticky;
+  top: 0px;
+  float: left;
+  width: 100%;
+  height: 50px;
+  padding: 0 $spacing-half;
+  background-color: $color-background-light;
+  border-bottom: 1px solid white;
+
+  section {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__title {
+    font-family: $font-family-sans;
+    font-weight: 900;
+    color: $color-red;
+    margin: 0;
+    flex: 1 1 auto;
+    font-size: 30px;
+  }
+  
+  &__links {
+    flex: 0 0 auto;
+    a {
+      margin-left: $spacing-half;
+    }
+  }
+}
