@@ -27,21 +27,35 @@ hero-slider {
         @include grid-column(7);
       }
       &-subheader {
-		   font-family: $font-family-heading;
-		   @include type-scale(-1);
-		   margin: $spacing-half 0;
-	  }
+        font-family: $font-family-heading;
+        @include type-scale(-1);
+        margin: $spacing-half 0;
+        display: none;
+         @include grid-media($medium-grid) {
+          display: block;
+        }
+      }
       &-header {
         font-family: $font-family-heading;
         color: $color-red-l;
-        @include grid-media($large-grid) {
+        @include grid-media($medium-grid) {
+          @include type-scale(3);
+          line-height: 40px;
+        }
+		@include grid-media($large-grid) {
+          @include type-scale(4);
+          line-height: 50px;
+        }
+        @include grid-media($wide-grid) {
           @include type-scale(5);
           line-height: 60px;
         }
       }
       &-text {
-		  max-width: 60%;
-	  }
+        @include grid-media($wide-grid) {
+          max-width: 60%;
+        }
+      }
     }
   }
 }
