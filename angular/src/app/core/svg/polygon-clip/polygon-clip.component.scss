@@ -1,0 +1,23 @@
+@import "./../../../../styles/utils/utils";
+
+:host,
+polygon-clip {
+	.element{
+		display: flex;
+		height: 100%;
+		width: 100%;
+		background-color: $color-red;
+		
+		-webkit-clip-path: url("#clip-shape");
+  		/* required for Webkit/Blink browsers if you're using only inline SVG clipping paths, but not CSS clip-path */
+  		clip-path: url("#clip-shape");
+
+		  /deep/ img{
+			  width: 100%;
+			  height: 100%;
+			  mix-blend-mode: lighten;
+			  object-fit: fill;
+		  }
+	}
+
+}
