@@ -1,0 +1,47 @@
+@import "./../../../../styles/utils/utils";
+:host,
+hero-slider {
+  @include grid-container;
+  polygon-clip {
+    @include grid-column(4);
+    @include grid-media($small-grid) {
+      @include grid-column(4);
+    }
+    @include grid-media($medium-grid) {
+      @include grid-column(4);
+    }
+    @include grid-media($large-grid) {
+      @include grid-column(5);
+    }
+  }
+  .hs {
+    &__details {
+      @include grid-column(4);
+      @include grid-media($small-grid) {
+        @include grid-column(4);
+      }
+      @include grid-media($medium-grid) {
+        @include grid-column(4);
+      }
+      @include grid-media($large-grid) {
+        @include grid-column(7);
+      }
+      &-subheader {
+		   font-family: $font-family-heading;
+		   @include type-scale(-1);
+		   margin: $spacing-half 0;
+	  }
+      &-header {
+        font-family: $font-family-heading;
+        color: $color-red-l;
+        @include grid-media($large-grid) {
+          @include type-scale(5);
+          line-height: 60px;
+        }
+      }
+      &-text {
+		  max-width: 60%;
+	  }
+    }
+  }
+}

@@ -5,9 +5,14 @@ import { HeroSliderComponent } from './hero-slider.component';
 
 @NgModule({
 	imports: [
-		CommonModule
+		CommonModule,
+		CoreModule
 	],
 	declarations: [
-		HeroSliderComponent]
+		HeroSliderComponent
+	],
+	exports: [
+		HeroSliderComponent
+	]
 })
 export class HeroSliderModule { }

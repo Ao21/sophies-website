@@ -7,18 +7,7 @@ app-home-page {
   padding-top: $spacing-whole;
   background-color: $color-background-light;
   section {
-    @include grid-container;
+  
   }
-  polygon-clip {
-    @include grid-column(4);
-    @include grid-media($small-grid) {
-      @include grid-column(2);
-    }
-    @include grid-media($medium-grid) {
-      @include grid-column(4);
-    }
-    @include grid-media($large-grid) {
-      @include grid-column(6);
-    }
-  }
+ 
 }
