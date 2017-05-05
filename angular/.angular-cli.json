@@ -21,6 +21,11 @@
       "styles": [
         "styles.scss"
       ],
+      "stylePreprocessorOptions":{
+        "includePaths": [
+          "./node_modules/bourbon-neat/core/"
+        ]
+      },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
