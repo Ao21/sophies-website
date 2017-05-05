@@ -1,4 +1,4 @@
-@import "./../../../../styles/utils/mixins";
+@import "./../../../../styles/utils/utils";
 :host,
 .header {
   position: fixed;
@@ -11,6 +11,11 @@
   background-color: $color-background-light;
   border-bottom: 1px solid white;
 
+  &:before{
+    content: "";
+    background-color: white;
+  }
+
   section {
     display: flex;
     flex-flow: row;
@@ -21,7 +26,7 @@
   &__title {
     font-family: $font-family-sans;
     font-weight: 900;
-    color: $color-red;
+    color: $color-red-l;
     margin: 0;
     flex: 1 1 auto;
     font-size: 30px;

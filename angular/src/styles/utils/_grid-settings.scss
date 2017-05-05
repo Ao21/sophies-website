@@ -1,0 +1,31 @@
+
+$small-grid: (
+  columns: 4,
+  gutter: 16px,
+  media: 320px,
+);
+
+$medium-grid: (
+  columns: 8,
+  gutter: 32px,
+  media: 768px,
+);
+
+$large-grid: (
+  columns: 12,
+  gutter: 32px,
+  media: 1024px,
+);
+
+$wide-grid: (
+  columns: 12,
+  gutter: 32px,
+  media: 1440px,
+);
+
+$grids: (
+  small: $small-grid,
+  medium: $medium-grid,
+  large: $large-grid,
+  wide: $wide-grid
+);
