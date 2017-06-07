@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
-import * as SVG from 'svg.js';
+import * as SVG from 'svgjs';
 
 @Component({
 	selector: 'app-svg',

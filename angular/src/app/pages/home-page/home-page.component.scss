@@ -1,13 +1,27 @@
 @import "./../../../styles/utils/utils";
+
 :host,
 app-home-page {
   flex: 1 1 auto;
   width: 100%;
   float: left;
-  padding-top: $spacing-whole;
-  background-color: $color-background-light;
-  section {
   
+  .hero {
+    padding-top: $spacing-whole;
+    background-color: $color-background-light;
   }
- 
+  
+  .profile {
+    @include grid-container;
+    @include grid-collapse;
+    &__img {
+      
+      @include grid-media($large-grid) {
+        @include grid-column(5.1);
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
 }

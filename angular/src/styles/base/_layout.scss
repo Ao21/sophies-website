@@ -1,4 +1,8 @@
 section {
+	width: 100%;
+	float: left;
+}
+article {
 	@include mq(small){
 		max-width: 100%;
 	}

@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import * as SVG from 'svg.js';
+import * as SVG from 'svgjs';
 
 @Component({
 	selector: 'polygon-clip',
@@ -29,7 +29,6 @@ export class PolygonClipComponent implements OnInit {
 			.id('clip-shape')
 			.attr({ clipPathUnits: 'objectBoundingBox' });
 	}
-
 	doStuff() {
 		this.polygon.animate(350).plot('0.3 0, 0, 1, 1 1, 1 0');
 	}
