@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SvgComponent } from './svg/svg.component';
-import { PolygonClipComponent } from './svg/polygon-clip/polygon-clip.component';
+import { PolygonClipModule } from './svg/polygon-clip/polygon-clip.module';
+
+
 
 @NgModule({
 	imports: [
-		CommonModule
+		CommonModule,
+		PolygonClipModule
 	],
 	declarations: [
 		SvgComponent,
-		PolygonClipComponent],
+	],
 	exports: [
 		SvgComponent,
-		PolygonClipComponent
+		PolygonClipModule
+		
 	]
 })
 export class CoreModule { }
