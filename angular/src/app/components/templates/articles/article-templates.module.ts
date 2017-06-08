@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreModule } from './../../../core/core.module';
 import { ArticleSideImageComponent } from './article-side-image/article-side-image.component';
-import { UtilsModule } from './../../../core/utils/utils.module';
+
 
 @NgModule({
 	imports: [
 		CommonModule,
-		UtilsModule
+		CoreModule
 	],
 	declarations: [
 		ArticleSideImageComponent

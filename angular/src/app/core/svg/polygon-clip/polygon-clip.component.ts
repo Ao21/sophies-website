@@ -3,6 +3,20 @@ import { ScrollDispatcher } from './../../positioning/scroll-dispatcher';
 import { SHAPES } from './../shape-constants';
 import * as SVG from 'svg.js';
 
+/**
+ * Polygon Clip Component
+ *
+ * Creates an SVG Clip path of an Image using a point array
+ *
+ * Example:
+ * 		<polygon-clip from="0 1, 0 1, 0 1" to="1 0, 0 1, 1 0, 0 1">
+ *			<img src="BLAH" />
+ * 		</polygon-clip>
+ *
+ * Input Params
+ * @param from {string} Either a point array in string from or an enum from the Shape Constants
+ * @param to {string} Either a point array in string from or an enum from the Shape Constants
+ */
 
 @Component({
 	selector: 'polygon-clip',
@@ -40,13 +54,13 @@ export class PolygonClipComponent implements OnInit {
 			.id('clip-shape')
 			.attr({ clipPathUnits: 'objectBoundingBox' });
 
-
 	}
 
 
 	doStuff() {
-		console.log(this.to);
-		this.polygon.animate(350).plot(this.to);
+		if (this.to) {
+			this.polygon.animate(350).plot(this.to);
+		}
 	}
 
 }

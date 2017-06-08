@@ -1,0 +1,23 @@
+@import "./../../../../../styles/utils/utils";
+:host,
+template-article-side-image,
+.article-side-image {
+  @include grid-container;
+
+  &__image {
+    height: 100vh;
+  }
+
+  polygon-clip {
+    @include grid-column(4);
+    @include grid-media($small-grid) {
+      @include grid-column(4);
+    }
+    @include grid-media($medium-grid) {
+      @include grid-column(4);
+    }
+    @include grid-media($large-grid) {
+      @include grid-column(5);
+    }
+  }
+}
