@@ -1,9 +1,0 @@
-:host,
-app-svg {
-	.element{
-		-webkit-clip-path: url("#clip-shape");
-  		/* required for Webkit/Blink browsers if you're using only inline SVG clipping paths, but not CSS clip-path */
-  		clip-path: url("#clip-shape");
-	}
-
-}
