@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ScrollDispatcher } from './../../positioning/scroll-dispatcher';
 import { XSHAPE } from './../shape-constants';
-import * as SVG from 'svg.js';
+import * as SVG from 'svgjs';
 
 @Component({
 	selector: 'scrolling-clip',

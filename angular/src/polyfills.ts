@@ -44,7 +44,7 @@
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 
-import 'svg.js';
+import 'svgjs';
 
 
 /** ALL Firefox browsers require the following to support `@angular/animation`. **/

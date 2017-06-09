@@ -6,7 +6,7 @@ polygon-clip {
 		display: flex;
 		height: 100%;
 		width: 100%;
-		background-color: $color-dark;
+		background-color: $color-red;
 		
 		-webkit-clip-path: url("#clip-shape");
   		/* required for Webkit/Blink browsers if you're using only inline SVG clipping paths, but not CSS clip-path */

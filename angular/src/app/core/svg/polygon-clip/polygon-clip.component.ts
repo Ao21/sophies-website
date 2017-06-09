@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { ScrollDispatcher } from './../../positioning/scroll-dispatcher';
 import { SHAPES } from './../shape-constants';
-import * as SVG from 'svg.js';
+import * as SVG from 'svgjs';
 
 /**
  * Polygon Clip Component
