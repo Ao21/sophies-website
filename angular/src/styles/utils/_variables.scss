@@ -36,10 +36,16 @@ $spacing-half: $base-height / 2;
 $spacing-whole: $base-height;
 /// @group spacing
 /// @require {variable} $base-height
+$spacing-one-half: $base-height * 1.25;
+/// @group spacing
+/// @require {variable} $base-height
 $spacing-double: $base-height * 2;
 /// @group spacing
 /// @require {variable} $base-height
 $spacing-triple: $base-height * 3;
+/// @group spacing
+/// @require {variable} $base-height
+$spacing-quad: $base-height * 4;
 
 /// @group colors
 /// @type Color

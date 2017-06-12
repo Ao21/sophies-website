@@ -23,6 +23,14 @@ h4 { @include type-scale(0); }
 h5 { @include type-scale(0); }
 h6 { @include type-scale(0); }
 
+.tiny {
+  @include type-scale(-1);
+}
+
+.giant {
+  @include type-scale(4);
+}
+
 
 p {
   margin-top: 0;

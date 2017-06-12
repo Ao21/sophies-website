@@ -1,7 +1,7 @@
 @import "./../../../../styles/utils/utils";
 
 :host,
-polygon-clip {
+scrolling-clip {
 	.element{
 		display: flex;
 		height: 100%;
@@ -18,10 +18,6 @@ polygon-clip {
 			  mix-blend-mode: lighten;
 			  object-fit: fill;
 		  }
-	}
-
-	&.contain {
-		
 	}
 
 }

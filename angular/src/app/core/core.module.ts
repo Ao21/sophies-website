@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SvgComponent } from './svg/svg.component';
 import { PolygonClipModule } from './svg/polygon-clip/polygon-clip.module';
-
+import { UtilsModule } from './utils/utils.module';
 
 
 @NgModule({
 	imports: [
 		CommonModule,
-		PolygonClipModule
+		PolygonClipModule,
+		UtilsModule
 	],
 	declarations: [
-		SvgComponent,
 	],
 	exports: [
-		SvgComponent,
-		PolygonClipModule
+		PolygonClipModule,
+		UtilsModule
 		
 	]
 })
