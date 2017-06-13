@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArticleSideImageComponent } from './article-side-image.component';
+import { ArticleSideSingleImageComponent } from './article-side-image.component';
 
-describe('ArticleSideImageComponent', () => {
-  let component: ArticleSideImageComponent;
-  let fixture: ComponentFixture<ArticleSideImageComponent>;
+describe('ArticleSideSingleImageComponent', () => {
+  let component: ArticleSideSingleImageComponent;
+  let fixture: ComponentFixture<ArticleSideSingleImageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticleSideImageComponent ]
+      declarations: [ ArticleSideSingleImageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArticleSideImageComponent);
+    fixture = TestBed.createComponent(ArticleSideSingleImageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

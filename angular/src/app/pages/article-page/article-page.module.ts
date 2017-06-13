@@ -1,16 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ArticlePageComponent } from './article-page.component';
-import { TemplatesModule } from './../../components/templates/templates.module';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ArticlePageComponent } from "./article-page.component";
+import { TemplatesModule } from "./../../components/templates/templates.module";
 
 @NgModule({
-	imports: [
-		CommonModule,
-		TemplatesModule
-	],
+	imports: [CommonModule, TemplatesModule],
 	declarations: [ArticlePageComponent],
-	exports: [
-		ArticlePageComponent
-	]
+	exports: [ArticlePageComponent]
 })
-export class ArticlePageModule { }
+export class ArticlePageModule {}

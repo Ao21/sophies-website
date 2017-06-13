@@ -1,11 +1,11 @@
-import { Routes } from '@angular/router';
-import { ArticlePageComponent } from './article-page.component';
+import { Routes } from "@angular/router";
+import { ArticlePageComponent } from "./article-page.component";
 
 export const ArticlePageRoutes: Routes = [
 	{
-		path: 'article',
+		path: "article",
 		component: ArticlePageComponent,
 		canActivate: [],
-		resolve: {},
+		resolve: {}
 	}
 ];

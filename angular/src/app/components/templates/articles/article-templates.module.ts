@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from './../../../core/core.module';
-import { ArticleSideImageComponent } from './article-side-image/article-side-image.component';
+import { ArticleSideSingleImageComponent } from './article-side-image/article-side-image.component';
+import { ArticleMultiStickyImageComponent } from './article-multi-sticky-image/article-multi-sticky-image.component';
 
 
 @NgModule({
@@ -10,10 +11,12 @@ import { ArticleSideImageComponent } from './article-side-image/article-side-ima
 		CoreModule
 	],
 	declarations: [
-		ArticleSideImageComponent
+		ArticleSideSingleImageComponent,
+		ArticleMultiStickyImageComponent
 	],
 	exports: [
-		ArticleSideImageComponent
+		ArticleSideSingleImageComponent,
+		ArticleMultiStickyImageComponent
 	]
 })
 export class ArticleTemplatesModule { }

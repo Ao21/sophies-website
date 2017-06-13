@@ -7,7 +7,7 @@ template-article-side-image,
     height: 100vh;
     z-index: -1;
     position: fixed;
-    margin-top: 50px;
+    margin-top: $header-height;
     @include grid-column(4);
     @include grid-media($small-grid) {
       @include grid-column(4);
