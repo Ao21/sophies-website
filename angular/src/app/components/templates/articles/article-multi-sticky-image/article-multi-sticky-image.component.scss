@@ -1,32 +1,82 @@
 @import "./../../../../../styles/utils/utils";
-:host,
-.article-multi-sticky-image {
-    @include grid-container;
 
-    &__article {
-        @include grid-column(6);
-        margin-top: $spacing-quad * 1.5;
+
+
+
+
+
+
+
+:host, .article-multi-sticky-image {
+  @include grid-container;
+  @include grid-collapse();
+
+  &__article {
+    margin-top: $spacing-quad * 1.5;
+
+    @include grid-media($large-grid-collapsed) {
+      @include grid-column(7);
+    }
+  }
+  &__image {
+    @include grid-column(5);
+
+    @include grid-media($small-grid) {
+      @include grid-column(4);
+    }
+
+    @include grid-media($medium-grid) {
+      @include grid-column(4);
+    }
+
+    @include grid-media($large-grid-collapsed) {
+      @include grid-column(5);
+    }
+
+    height: 100vh;
+    position: sticky;
+    top: $header-height;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .article {
+    &__title {
+      color: $color-red;
+      @include grid-shift(4);
+      z-index: 999999;
+      margin-bottom: $spacing-half;
+    }
+
+    &__date {
+      position: absolute;
+      transform: rotate(-90deg);
+      @include grid-column(6);
+      @include grid-shift(9);
+      color: $color-dark;
+    }
+
+    &__content {
+      @include grid-shift(4);
+
+      @include grid-media($large-grid-collapsed) {
+        @include grid-column(12);
+      }
+
+      p {
+        text-align: justify;
+        max-width: 460px;
+      }
     }
     &__image {
-        @include grid-column(6);
-        height: 100vh;
-        position: sticky;
-        top: $header-height;
-        img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
+      max-height: calc(100vh - #{$header-height});
+      img {
+        max-height: 100%;
+      }
     }
-    .article {
-        &__content {
-        }
-        &__image {
-            max-height: calc(100vh - #{$header-height});
-            img {
-                max-height: 100%;
-            }
-        }
-    }
-
+  }
 }

@@ -1,0 +1,50 @@
+@import "./../../../../../styles/utils/utils";
+:host, .article-multi-sticky-quote {
+  @include grid-container;
+  @include grid-collapse();
+
+  &__article {
+    @include grid-column(7);
+    margin-top: $spacing-quad * 1.5;
+  }
+
+  &__quote {
+    @include grid-column(7);
+    height: 100vh;
+    position: sticky;
+    top: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__quote + &__article {
+    @include grid-column(5);
+
+    .article__content {
+      @include grid-shift(0);
+      @include grid-column(12);
+      margin-left: 0;
+    }
+  }
+
+  .article {
+    &__title {
+      color: $color-red;
+      @include grid-shift(3);
+      z-index: 999999;
+    }
+    &__quote {
+      flex: 1 1 auto;
+      max-width: 480px;
+    }
+    &__content {
+      @include grid-shift(3);
+      @include grid-column(12);
+      p {
+        text-align: justify;
+        max-width: 460px;
+      }
+    }
+  }
+}
