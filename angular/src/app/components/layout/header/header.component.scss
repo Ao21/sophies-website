@@ -2,14 +2,16 @@
 :host,
 .header {
   position: fixed;
-  position: sticky;
+  // position: sticky;
   top: 0px;
+  left: 0;
   float: left;
   width: 100%;
   height: $header-height;
   padding: 0 $spacing-half;
   background-color: $color-background-light;
   border-bottom: 1px solid white;
+  z-index: 99999999999;
 
   &:before{
     content: "";

@@ -6,6 +6,8 @@ app-home-page {
   width: 100%;
   float: left;
   
+  padding-top: $header-height;
+
   .hero {
     padding-top: $spacing-whole;
     background-color: $color-background-light;
