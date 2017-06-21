@@ -16,12 +16,16 @@ h4, h5, h6 {
   color: inherit;
 }
 
-h1 { @include type-scale(3); }
+h1 { 
+  @include type-scale(3);
+  margin-bottom: $spacing-whole;
+}
 h2 { @include type-scale(2); }
 h3 { @include type-scale(1); }
 h4 { @include type-scale(0); }
 h5 { @include type-scale(0); }
 h6 { @include type-scale(0); }
+
 
 .tiny {
   @include type-scale(-1);
@@ -29,6 +33,10 @@ h6 { @include type-scale(0); }
 
 .giant {
   @include type-scale(4);
+}
+
+.ogro {
+  @include type-scale(5);
 }
 
 

@@ -17,9 +17,22 @@ $large-grid: (
   media: 1024px,
 );
 
+$large-grid-collapsed: (
+  columns: 12,
+  gutter: 0,
+  media: 1024px,
+);
+
+
 $wide-grid: (
   columns: 12,
   gutter: 32px,
+  media: 1440px,
+);
+
+$wide-grid-collapsed: (
+  columns: 12,
+  gutter: 0,
   media: 1440px,
 );
 
