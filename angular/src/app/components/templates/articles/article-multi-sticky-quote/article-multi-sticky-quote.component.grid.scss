@@ -3,26 +3,68 @@
   padding-top: $header-height;
   display: grid;
 
-  grid-template-columns: 50% $spacing-quad auto $spacing-quad;
-  grid-template-rows: auto auto auto auto;
-  grid-template-areas: "quote . article .";
+  @include mq(small) {
+    grid-template-columns: 1rem auto 1rem;
+    grid-template-rows: "auto auto auto";
+
+    grid-template-areas: ". quote ." ". article .";
+
+    aside {
+      position: relative;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      &:before{
+          content: "~";
+          position: absolute;
+          top: -25px;
+          height: 100%;
+          left: 50%;
+        }
+         &:after{
+          content: "~";
+          position: absolute;
+          bottom: -25px;
+          left: 50%;
+        }
+      h1 {
+        position: relative;
+        text-align: center;
+        @include type-scale(2);
+        margin: 0;
+  
+      }
+    }
+  }
+
+  @include mq(medium) {
+    grid-template-columns: 50% $spacing-quad auto $spacing-quad;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "quote . article .";
+
+    aside {
+      height: 100vh;
+      position: sticky;
+      top: $header-height;
+      display: flex;
+      justify-content: center;
+      h1 {
+        flex: 0 0 50%;
+        align-self: center;
+        @include type-scale(3);
+      }
+    }
+
+    article {
+      padding-top: $spacing-double;
+    }
+  }
 
   aside {
     grid-area: quote;
-    height: 100vh;
-    position: sticky;
-    top: $header-height;
-    display: flex;
-    justify-content: center;
-    h1 {
-      flex: 0 0 50%;
-      align-self: center;
-    }
   }
 
   article {
     grid-area: article;
-    padding-top: $spacing-double;
 
     h1 {
       color: $color-gray-d;
