@@ -4,6 +4,7 @@ import { CoreModule } from './../../../core/core.module';
 import { ArticleSideSingleImageComponent } from './article-side-image/article-side-image.component';
 import { ArticleMultiStickyImageComponent } from './article-multi-sticky-image/article-multi-sticky-image.component';
 import { ArticleMultiStickyQuoteComponent } from './article-multi-sticky-quote/article-multi-sticky-quote.component';
+import { ArticleMultiStickyBreakerComponent } from './article-multi-sticky-breaker/article-multi-sticky-breaker.component';
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import { ArticleMultiStickyQuoteComponent } from './article-multi-sticky-quote/a
 	declarations: [
 		ArticleSideSingleImageComponent,
 		ArticleMultiStickyImageComponent,
-		ArticleMultiStickyQuoteComponent
+		ArticleMultiStickyQuoteComponent,
+		ArticleMultiStickyBreakerComponent
 	],
 	exports: [
 		ArticleSideSingleImageComponent,
 		ArticleMultiStickyImageComponent,
-		ArticleMultiStickyQuoteComponent
+		ArticleMultiStickyQuoteComponent,
+		ArticleMultiStickyBreakerComponent
 	]
 })
 export class ArticleTemplatesModule { }
