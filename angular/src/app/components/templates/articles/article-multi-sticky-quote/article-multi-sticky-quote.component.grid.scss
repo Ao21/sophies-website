@@ -1,0 +1,35 @@
+@import "./../../../../../styles/utils/utils";
+:host, .article-multi-sticky-quote, .article {
+  padding-top: $header-height;
+  display: grid;
+
+  grid-template-columns: 50% $spacing-quad auto $spacing-quad;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas: "quote . article .";
+
+  aside {
+    grid-area: quote;
+    height: 100vh;
+    position: sticky;
+    top: $header-height;
+    display: flex;
+    justify-content: center;
+    h1 {
+      flex: 0 0 50%;
+      align-self: center;
+    }
+  }
+
+  article {
+    grid-area: article;
+    padding-top: $spacing-double;
+
+    h1 {
+      color: $color-gray-d;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+}
