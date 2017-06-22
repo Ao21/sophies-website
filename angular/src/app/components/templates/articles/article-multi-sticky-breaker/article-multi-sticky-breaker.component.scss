@@ -1,0 +1,35 @@
+@import "./../../../../../styles/utils/utils";
+:host, article-multi-sticky-breaker {
+  display: flex;
+  min-height: 70vh;
+  background-color: $color-background-light;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    object-position: top;
+    z-index: -1;
+  }
+
+  &:after {
+    content: "";
+    border: 10px solid rgba(255,255,255,0.5);
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    position: absolute;
+  }
+
+  h1 {
+    @include type-scale(5);
+    flex: 1 1 auto;
+    color: $color-light;
+    align-self: center;
+    text-align: center;
+	position: relative;
+  }
+}
