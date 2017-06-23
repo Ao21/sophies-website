@@ -1,0 +1,23 @@
+interface Field {
+	id: ID!
+	key: String!
+	type: String!
+	label: String!
+	required: Boolean!
+	validators: [String!]
+	placeholder: String
+}
+
+type TextField implements Field {
+	id: ID!
+	key: String!
+	type: String!
+	label: String!
+	required: Boolean!
+	validators: [String!]
+	placeholder: String
+}
+
+type Query {
+	field(id: ID!): Field
+}
