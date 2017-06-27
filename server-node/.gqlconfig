@@ -1,0 +1,11 @@
+{
+    "schema": {
+    "files": "**/*.gql",
+    "validate": {
+      "extends": "gql-rules-schema",
+      "rules": {
+        
+      }
+    }
+  }
+}
