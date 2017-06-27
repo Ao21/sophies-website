@@ -1,25 +1,35 @@
-import FieldGQLFile from './field.gql';
-import { buildSchema, Source } from 'graphql';
+import FieldGQLFile from "./field.gql";
+import { TextField } from "./field.mongodb";
+import { buildSchema, Source } from "graphql";
 
+const fakeDB: any = {};
 
 export interface Field {
-    key?: string;
-    type?: string;
-    label?: string;
-    required?: boolean;
-    validators?: string[];
-    placeholder?: string;
+	key?: string;
+	type?: string;
+	label?: string;
+	required?: boolean;
+	validators?: string[];
+	placeholder?: string;
 }
 
 export class FieldModel {
-    fieldGQL = FieldGQLFile;
-    fieldResolve: Field = new Field();
+	fieldGQL = FieldGQLFile;
+	resolver: Field = new Field();
 
-    constructor() {}
+	constructor() {}
 }
 
-export class Field implements Field {
-    field() {
-        return {id: 5, type: 'blah'}
-    }
+
+export class Field {
+
+	createField({ input }: { input: Field }, a: any, b: any, c: any) {
+		console.log(a, b, c);
+		fakeDB.field = input;
+		return input;
+	}
+
+	field() {
+		return fakeDB.field;
+	}
 }
