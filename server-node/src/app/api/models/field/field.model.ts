@@ -1,4 +1,4 @@
-import FieldGraph from './field.gql';
+import FieldGQLFile from './field.gql';
 import { buildSchema, Source } from 'graphql';
 
 
@@ -12,18 +12,14 @@ export interface Field {
 }
 
 export class FieldModel {
-    fieldGQL = FieldGraph;
+    fieldGQL = FieldGQLFile;
+    fieldResolve: Field = new Field();
 
     constructor() {}
 }
 
 export class Field implements Field {
-    constructor({key, type, label, required, validators, placeholder}: Field) {
-        this.key = key;
-        this.type = type;
-        this.label = label;
-        this.required = required;
-        this.validators = validators;
-        this.placeholder = placeholder;
+    field() {
+        return {id: 5, type: 'blah'}
     }
 }

@@ -22,8 +22,6 @@ module.exports = {
   output: {
     filename: "dist.js",
     path: path.resolve(__dirname, "dist"),
-    devtoolModuleFilenameTemplate: "[absolute-resource-path]",
-    devtoolFallbackModuleFilenameTemplate: "[absolute-resource-path]?[hash]"
   },
 
   module: {
@@ -41,14 +39,30 @@ module.exports = {
         test: /\.ts?$/,
         loader: "ts-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'raw-loader'
       }
     ]
   },
 
   resolve: {
     extensions: [".ts", ".js", ".json"],
-    modules: [path.join(__dirname, "src"), "node_modules"]
+    modules: [path.join(__dirname, "src"), "node_modules"],
+    alias: {
+            'merge-graphql-schemas': "node_modules/merge-graphql-schemas/src/index.js"
+        }
   },
 
-  plugins: [new CleanWebpackPlugin(["dist"])]
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      test:/\.js$/,
+      moduleFilenameTemplate:'[absolute-resource-path]',
+      fallbackModuleFilenameTemplate:'[absolute-resource-path]?[hash]',
+      filename: "[file].map",
+      sourceRoot:'/'}
+    ),
+    new CleanWebpackPlugin(["dist"])]
 };

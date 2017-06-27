@@ -19,5 +19,5 @@ type TextField implements Field {
 }
 
 type Query {
-	field(id: ID!): Field
+	field(id: ID!): TextField
 }
