@@ -19,12 +19,14 @@
 			"internalConsoleOptions": "neverOpen"
 		},
 		{
+			"name": "Launch Program",
 			"type": "node",
-			"request": "attach",
-			"name": "Attach",
-			"port": 9229,
-			"protocol": "inspector",
-			"restart": true,
+			"request": "launch",
+			"cwd": "${workspaceRoot}",
+			"program": "${workspaceRoot}/src/index.ts",
+			"outFiles": [
+				"${workspaceRoot}/dist/dist.js"
+			],
 			"sourceMaps": true
 		}
 	]

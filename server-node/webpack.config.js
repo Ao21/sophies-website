@@ -22,6 +22,7 @@ module.exports = {
   output: {
     filename: "dist.js",
     path: path.resolve(__dirname, "dist"),
+    devtoolModuleFilenameTemplate: '[absolute-resource-path]'
   },
 
   module: {
@@ -57,12 +58,5 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.SourceMapDevToolPlugin({
-      test:/\.js$/,
-      moduleFilenameTemplate:'[absolute-resource-path]',
-      fallbackModuleFilenameTemplate:'[absolute-resource-path]?[hash]',
-      filename: "[file].map",
-      sourceRoot:'/'}
-    ),
     new CleanWebpackPlugin(["dist"])]
 };
