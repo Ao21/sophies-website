@@ -24,12 +24,11 @@ export class FieldModel {
 export class Field {
 
 	createField({ input }: { input: Field }, a: any, b: any, c: any) {
-		console.log(a, b, c);
 		fakeDB.field = input;
 		return input;
 	}
 
-	field() {
+	field(a: any, b: any, c: any) {
 		return fakeDB.field;
 	}
 }

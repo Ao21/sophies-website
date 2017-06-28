@@ -3,14 +3,14 @@ import * as mongoose from "mongoose";
 export const BaseFieldSchema = new mongoose.Schema({
 	key: String,
 	type: String,
-	label: String,
-	required: Boolean,
-	order: Number,
-	helpId: Number,
-	validators: [String],
-	placeholder: String,
-	value: String,
-	childFields: [{ type: mongoose.Schema.Types.ObjectId, ref: "Field" }]
+
+	config: {
+		label: String,
+		placeholder: String,
+		required: Boolean,
+		validators: [String],
+	},
+	value: mongoose.Schema.Types.Mixed,
 });
 
 export const TextFieldSchema = new mongoose.Schema({
@@ -19,8 +19,7 @@ export const TextFieldSchema = new mongoose.Schema({
 });
 
 export const DateFieldSchema = new mongoose.Schema({
-	type: { type: String, default: "dropdown" },
-	options: [{ id: String, description: String }],
+	type: { type: String, default: "date" },
 	value: { id: String, description: String }
 });
 
@@ -29,6 +28,12 @@ export const RadioFieldSchema = new mongoose.Schema({
 	options: [{ id: String, description: String }],
 	value: { id: String, description: String }
 });
+
+export const FieldGroupSchema = new mongoose.Schema({
+	type: { type: String, default: "group" },
+	childFields: [{ type: mongoose.Schema.Types.ObjectId, ref: "Field" }],
+});
+
 
 export const FieldSchema = mongoose.model("Field", BaseFieldSchema);
 
@@ -43,4 +48,9 @@ export const DateField = FieldSchema.discriminator(
 export const RadioField = FieldSchema.discriminator(
 	"RadioField",
 	RadioFieldSchema
+);
+
+export const FieldGroup = FieldSchema.discriminator(
+	"FieldGroup",
+	FieldGroupSchema
 );

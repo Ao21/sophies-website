@@ -1,26 +1,30 @@
 import * as express from "express";
 import * as graphqlHTTP from "express-graphql";
-import { buildSchema } from "graphql";
+import { buildSchema, GraphQLSchema } from "graphql";
 import { Models } from "./../../models/models.module";
 
+import { query, mutation } from "./../../models/field/field.graphql";
+
 export class GraphQlRoutes {
-	router: express.Router;
-	models: Models;
+    router: express.Router;
+    models: Models;
 
-	constructor({ models }: { models: Models }) {
-		this.models = models;
-		this.router = express.Router();
-	}
+    constructor({ models }: { models: Models }) {
+        this.models = models;
+        this.router = express.Router();
+    }
 
-	createRoutes(): express.Router {
-		this.router.use(
-			"/graphql",
-			graphqlHTTP({
-				schema: buildSchema(this.models.schema),
-				rootValue: this.models.resolver,
-				graphiql: true
-			})
-		);
-		return this.router;
-	}
+    createRoutes(): express.Router {
+
+		const schema = new GraphQLSchema({query: query, mutation: mutation});
+
+        this.router.use(
+            "/graphql",
+            graphqlHTTP({
+                schema: schema,
+                graphiql: true
+            })
+        );
+        return this.router;
+    }
 }

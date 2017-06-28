@@ -1,31 +1,84 @@
+# Generic
+
+interface OptionBooleanValue {
+	id: Boolean!
+	description: String!
+}
+
+interface OptionStringValue {
+	id: String!
+	description: String!
+}
+
+# Field
+
 input FieldInput {
   id: ID
   key: String
   type: String
 }
 
+interface FieldConfig {
+	label: String!
+	placeholder: String
+	required: Boolean!
+	validators: [String!]
+}
+
 interface Field {
 	id: ID!
 	key: String!
 	type: String!
-	label: String!
-	required: Boolean!
-	validators: [String!]
-	placeholder: String
+	config: FieldConfig
 }
+
+# Text Field
 
 type TextField implements Field {
 	id: ID!
 	key: String!
 	type: String!
-	label: String!
-	required: Boolean!
-	validators: [String!]
-	placeholder: String,
+	config: FieldConfig
+	value: String
 }
 
+# Date Field
+
+type DateField implements Field {
+	id: ID!
+	key: String!
+	type: String!
+	config: FieldConfig
+	value: String
+}
+
+# Radio Field
+
+type RadioField implements Field {
+	id: ID!
+	key: String!
+	type: String!
+	config: FieldConfig
+	options: [OptionBooleanValue]
+	value: String
+}
+
+# Group Field
+
+type FieldGroup implements Field {
+	id: ID!
+	key: String!
+	type: String!
+	config: FieldConfig
+	childFields: [Field]
+}
+
+# General
+
+union FieldTypes = TextField | DateField | RadioField | FieldGroup
+
 type Query {
-	field(id: ID!): TextField
+	field(id: ID!): FieldTypes
 }
 
 type Mutation {
