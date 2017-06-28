@@ -1,4 +1,19 @@
 import * as mongoose from "mongoose";
+import { RepositoryBase } from './../../../common/mongo/generic-repository';
+
+export interface FieldModel extends mongoose.Document {
+    key: String;
+    type: String;
+    config?: {
+        label?: String;
+        placeholder?: String;
+        required?: Boolean;
+        validators?: [String];
+    };
+    value?: any;
+    options: [any];
+    childFields: [any];
+}
 
 export const BaseFieldSchema = new mongoose.Schema({
 	key: String,
@@ -35,22 +50,47 @@ export const FieldGroupSchema = new mongoose.Schema({
 });
 
 
-export const FieldSchema = mongoose.model("Field", BaseFieldSchema);
+export const Field = mongoose.model("Field", BaseFieldSchema, "Fields", true);
 
-export const TextField = FieldSchema.discriminator(
+export const TextField = Field.discriminator(
 	"TextField",
-	TextFieldSchema
+	TextFieldSchema,
 );
-export const DateField = FieldSchema.discriminator(
+export const DateField = Field.discriminator(
 	"DateField",
 	DateFieldSchema
 );
-export const RadioField = FieldSchema.discriminator(
+export const RadioField = Field.discriminator(
 	"RadioField",
 	RadioFieldSchema
 );
 
-export const FieldGroup = FieldSchema.discriminator(
+export const FieldGroup = Field.discriminator(
 	"FieldGroup",
 	FieldGroupSchema
 );
+
+
+export class GenericFieldRepository extends RepositoryBase<FieldModel> {
+    constructor() {
+        super(Field);
+    }
+}
+
+export class TextfieldFieldRepository extends RepositoryBase<FieldModel> {
+    constructor() {
+        super(TextField);
+    }
+}
+
+export class FieldGroupRepository extends RepositoryBase<FieldModel> {
+    constructor() {
+        super(FieldGroup);
+    }
+}
+
+export class DateFieldRepository extends RepositoryBase<FieldModel> {
+    constructor() {
+        super(DateField);
+    }
+}

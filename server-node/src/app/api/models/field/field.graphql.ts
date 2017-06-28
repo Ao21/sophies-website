@@ -1,5 +1,6 @@
 import {
-    GraphQLInterfaceType,
+	GraphQLInterfaceType,
+	GraphQLFieldConfig,
     GraphQLID,
     GraphQLString,
     GraphQLBoolean,
@@ -13,7 +14,8 @@ import {
 
 export const FieldConfigInterface: GraphQLInterfaceType = new GraphQLInterfaceType(
     {
-        name: "FieldConfigInterface",
+		name: "FieldConfigInterface",
+
         fields: {
             label: { type: GraphQLString },
             placeholder: { type: GraphQLString },
@@ -23,12 +25,23 @@ export const FieldConfigInterface: GraphQLInterfaceType = new GraphQLInterfaceTy
     }
 );
 export const FieldInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
-    name: "FieldInterface",
+	name: "FieldInterface",
     fields: {
         id: { type: GraphQLID },
         type: { type: new GraphQLNonNull(GraphQLString) },
         key: { type: new GraphQLNonNull(GraphQLString) },
-        config: { type: FieldConfigInterface }
+		config: { type: FieldConfigInterface },
+	},
+	resolveType(value) {
+        if (value.type === "text") {
+            return TextField;
+        }
+        if (value.type === "date") {
+            return DateField;
+		}
+		 if (value.type === "group") {
+            return FieldGroup;
+        }
     }
 });
 
@@ -58,30 +71,34 @@ export const DateField: GraphQLObjectType = new GraphQLObjectType({
     isTypeOf: value => value.type === "date"
 });
 
+export const FieldGroup: GraphQLObjectType = new GraphQLObjectType({
+    name: "FieldGroup",
+	interfaces: [FieldInterface],
+    fields: {
+        id: { type: GraphQLID },
+        type: { type: new GraphQLNonNull(GraphQLString) },
+        key: { type: new GraphQLNonNull(GraphQLString) },
+		config: { type: FieldConfigInterface },
+		childFields: {type: new GraphQLList(FieldInterface) }
+    }
+});
+
 export const Field: GraphQLUnionType = new GraphQLUnionType({
     name: "Field",
-    types: [TextField, DateField],
+    types: [TextField, DateField, FieldGroup],
     resolveType(value) {
         if (value.type === "text") {
             return TextField;
         }
         if (value.type === "date") {
             return DateField;
+		}
+		if (value.type === "group") {
+            return FieldGroup;
         }
     }
 });
 
-export const FieldGroup: GraphQLObjectType = new GraphQLObjectType({
-    name: "FieldGroup",
-    interfaces: [FieldInterface],
-    fields: {
-        id: { type: GraphQLID },
-        type: { type: new GraphQLNonNull(GraphQLString) },
-        key: { type: new GraphQLNonNull(GraphQLString) },
-        config: { type: FieldConfigInterface },
-        childFields: { type: new GraphQLList(Field) }
-    }
-});
 
 const InputField: GraphQLInputObjectType = new GraphQLInputObjectType({
     name: "FieldInput",
@@ -91,15 +108,16 @@ const InputField: GraphQLInputObjectType = new GraphQLInputObjectType({
     }
 });
 
-const MutationCreateField = {
-    type: Field,
+const MutationCreateField: GraphQLFieldConfig<any, any> = {
+	type: Field,
     args: {
         input: { type: InputField }
     },
-    resolve: (root: any, { title }: { title: any }) => {
+	resolve: (root: any, { title }: { title: any }) => {
         return { type: "text", id: "3", key: "text" };
     }
 };
+
 
 export const query = new GraphQLObjectType({
     name: "Query",
@@ -110,8 +128,9 @@ export const query = new GraphQLObjectType({
                 where: { type: GraphQLID },
                 id: { type: GraphQLID }
             },
-            resolve: function(_, { id }) {
-                return [
+			resolve: function (_, { id }) {
+				return [
+					{ type: "group", id: "3", key: "date", childFields: [{ type: "date", id: "3", key: "date" }] },
                     { type: "date", id: "3", key: "date" },
                     { type: "text", id: "3", key: "text" }
                 ];

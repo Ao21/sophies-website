@@ -1,34 +1,44 @@
 import FieldGQLFile from "./field.gql";
 import { TextField } from "./field.mongodb";
-import { buildSchema, Source } from "graphql";
+import { Field as FieldModel } from "./field.graphql";
 
-const fakeDB: any = {};
+import { GenericFieldRepository } from './field.mongodb';
 
-export interface Field {
-	key?: string;
-	type?: string;
-	label?: string;
-	required?: boolean;
-	validators?: string[];
-	placeholder?: string;
-}
-
-export class FieldModel {
-	fieldGQL = FieldGQLFile;
-	resolver: Field = new Field();
-
-	constructor() {}
-}
+// Checkout https://github.com/koistya/graphql-express-mongodb-example
 
 
-export class Field {
+import {
+    buildSchema,
+    GraphQLFieldConfig,
+    GraphQLList,
+    GraphQLID
+} from "graphql";
 
-	createField({ input }: { input: Field }, a: any, b: any, c: any) {
-		fakeDB.field = input;
-		return input;
-	}
+const getField: GraphQLFieldConfig<any, any> = {
+    type: new GraphQLList(FieldModel),
+    args: {
+        where: { type: GraphQLID },
+        id: { type: GraphQLID }
+    },
+    resolve: function(root: any, { id }: { id: string }) {
+		const repo = new GenericFieldRepository();
 
-	field(a: any, b: any, c: any) {
-		return fakeDB.field;
-	}
-}
+		
+		return [
+            {
+                type: "group",
+                id: "3",
+                key: "date",
+                childFields: [{ type: "date", id: "3", key: "date" }]
+            },
+            { type: "date", id: "3", key: "date" },
+            { type: "text", id: "3", key: "text" }
+        ];
+    }
+};
+
+export const FieldQuery = {
+    getField: getField
+};
+
+export class Field {}
