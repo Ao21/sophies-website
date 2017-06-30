@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 export interface IRead<T> {
     retrieve: () => void;
-    findById: (_id: string) => void;
+    findById: (_id: string) => mongoose.Query<T>;
     findOne(cond?: Object): mongoose.Query<T>;
     find(cond: Object, fields: Object, options: Object): mongoose.Query<T[]>;
 }
@@ -36,8 +36,8 @@ export class RepositoryBase<T extends mongoose.Document>
         this._model.remove({ _id: this.toObjectId(_id) });
     }
 
-    findById(_id: string) {
-        this._model.findById(_id);
+    findById(_id: string): mongoose.Query<T> {
+        return this._model.findById(_id);
     }
 
     findOne(cond?: Object): mongoose.Query<T> {
