@@ -1,5 +1,5 @@
-import { BaseModel } from "./base/base.model";
-import { FieldQuery, Field } from "./field/field.model";
+import { BaseModel, BaseQuery } from "./base/base.model";
+import { FieldQuery } from "./field/field.model";
 
 import { mergeStrings, mergeResolvers } from "gql-merge";
 
@@ -11,10 +11,8 @@ export class Models {
 	resolver: any;
 
 	schema: any;
-	field: Field;
 
 	constructor() {
 		this.base = new BaseModel();
-		this.field = new Field();
 	}
 }

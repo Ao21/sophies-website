@@ -3,7 +3,7 @@ import * as graphqlHTTP from "express-graphql";
 import { buildSchema, GraphQLSchema } from "graphql";
 import { Models } from "./../../models/models.module";
 
-import { query, mutation } from "./../../models/field/field.graphql";
+import { BaseQuery, BaseMutation } from "./../../models/base/base.model";
 
 export class GraphQlRoutes {
     router: express.Router;
@@ -16,7 +16,7 @@ export class GraphQlRoutes {
 
     createRoutes(): express.Router {
 
-		const schema = new GraphQLSchema({query: query, mutation: mutation});
+		const schema = new GraphQLSchema({query: BaseQuery, mutation: BaseMutation});
 
         this.router.use(
             "/graphql",
