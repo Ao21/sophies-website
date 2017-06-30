@@ -52,11 +52,16 @@ $spacing-quad: $base-height * 4;
 $color-background-light: rgba(217,217,217,0.18);
 /// @group colors
 /// @type Color
+$color-border-light: rgba(151,151,151,0.18);
+$color-border-dark: rgba(151,151,151,1);
+/// @group colors
+/// @type Color
 $color-red-l: rgba(255,0,0,0.41);
 $color-red: rgba(251,147,147,1);
 /// @group colours
 /// @type Color
 $color-gray-xl: #e1e3e1;
+$color-gray-xxl: #E7E5E5;
 /// @group colours
 /// @type Color
 $color-gray-d: #5F5E5E;
@@ -66,6 +71,10 @@ $color-dark: #3C3C3C;
 /// @group colours
 /// @type Color
 $color-light: #F7F7F7;
+$color-light-d: #FBFBFB;
+
+
+$color-green: rgba(164,239, 222, 1);
 
 
 
