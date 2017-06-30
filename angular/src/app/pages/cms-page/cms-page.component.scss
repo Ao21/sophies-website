@@ -1,0 +1,19 @@
+@import "./../../../styles/utils/_utils";
+
+:host {
+	display: grid;
+	grid-template-columns: 20% 80%;
+	grid-template-rows: 60px auto;
+	height: 100%;
+
+	grid-template-areas: "header header" "content content";
+
+	cms-header {
+		grid-area: header;
+	}
+
+	section.content {
+		grid-area: content;	
+	}
+
+}
