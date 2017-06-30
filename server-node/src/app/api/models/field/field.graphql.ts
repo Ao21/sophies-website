@@ -15,7 +15,6 @@ import {
 export const FieldConfigInterface: GraphQLInterfaceType = new GraphQLInterfaceType(
     {
 		name: "FieldConfigInterface",
-
         fields: {
             label: { type: GraphQLString },
             placeholder: { type: GraphQLString },
@@ -44,6 +43,15 @@ export const FieldInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
         }
     }
 });
+
+export const FieldInput: GraphQLInputObjectType = new GraphQLInputObjectType({
+    name: "FieldInput",
+    fields: {
+        type: { type: new GraphQLNonNull(GraphQLString) },
+        key: { type: new GraphQLNonNull(GraphQLString) }
+    }
+});
+
 
 export const TextField: GraphQLObjectType = new GraphQLObjectType({
     name: "TextField",
@@ -99,49 +107,3 @@ export const Field: GraphQLUnionType = new GraphQLUnionType({
     }
 });
 
-
-const InputField: GraphQLInputObjectType = new GraphQLInputObjectType({
-    name: "FieldInput",
-    fields: {
-        type: { type: new GraphQLNonNull(GraphQLString) },
-        key: { type: new GraphQLNonNull(GraphQLString) }
-    }
-});
-
-const MutationCreateField: GraphQLFieldConfig<any, any> = {
-	type: Field,
-    args: {
-        input: { type: InputField }
-    },
-	resolve: (root: any, { title }: { title: any }) => {
-        return { type: "text", id: "3", key: "text" };
-    }
-};
-
-
-export const query = new GraphQLObjectType({
-    name: "Query",
-    fields: {
-        field: {
-            type: new GraphQLList(Field),
-            args: {
-                where: { type: GraphQLID },
-                id: { type: GraphQLID }
-            },
-			resolve: function (_, { id }) {
-				return [
-					{ type: "group", id: "3", key: "date", childFields: [{ type: "date", id: "3", key: "date" }] },
-                    { type: "date", id: "3", key: "date" },
-                    { type: "text", id: "3", key: "text" }
-                ];
-            }
-        }
-    }
-});
-
-export const mutation = new GraphQLObjectType({
-    name: "Mutation",
-    fields: {
-        createField: MutationCreateField
-    }
-});

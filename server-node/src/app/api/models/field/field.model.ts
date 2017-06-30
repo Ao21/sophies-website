@@ -1,11 +1,11 @@
-import FieldGQLFile from "./field.gql";
-import { TextField } from "./field.mongodb";
-import { Field as FieldModel } from "./field.graphql";
+import * as mongoose from "mongoose";
 
-import { GenericFieldRepository } from './field.mongodb';
+import { TextField } from "./field.mongodb";
+import { Field, FieldInput } from "./field.graphql";
+
+import { GenericFieldRepository } from "./field.mongodb";
 
 // Checkout https://github.com/koistya/graphql-express-mongodb-example
-
 
 import {
     buildSchema,
@@ -14,31 +14,70 @@ import {
     GraphQLID
 } from "graphql";
 
-const getField: GraphQLFieldConfig<any, any> = {
-    type: new GraphQLList(FieldModel),
+export interface FieldModel extends mongoose.Document {
+    key: String;
+    type: String;
+    config?: {
+        label?: String;
+        placeholder?: String;
+        required?: Boolean;
+        validators?: [String];
+    };
+    value?: any;
+    options: [any];
+    childFields: [any];
+}
+
+/**
+ * Field Query Functions
+ */
+
+const get: GraphQLFieldConfig<any, any> = {
+    type: Field,
     args: {
-        where: { type: GraphQLID },
         id: { type: GraphQLID }
     },
-    resolve: function(root: any, { id }: { id: string }) {
+    async resolve(root: any, { id }: { id: string }) {
 		const repo = new GenericFieldRepository();
-
-		
-		return [
-            {
-                type: "group",
-                id: "3",
-                key: "date",
-                childFields: [{ type: "date", id: "3", key: "date" }]
-            },
-            { type: "date", id: "3", key: "date" },
-            { type: "text", id: "3", key: "text" }
-        ];
+        const response = await repo.findById(id).exec();
+		return response.toJSON();
     }
 };
 
-export const FieldQuery = {
-    getField: getField
+const retrieve: GraphQLFieldConfig<any, any> = {
+    type: new GraphQLList(Field),
+    async resolve(root: any, { id }: { id: string }) {
+		const repo = new GenericFieldRepository();
+        const response = await repo.find().exec();
+        return response;
+    }
 };
 
-export class Field {}
+
+
+/**
+ * Field Mutation Functions
+ */
+
+const create: GraphQLFieldConfig<any, any> = {
+    type: Field,
+    args: {
+        field: { type: FieldInput },
+    },
+    async resolve(root: any, { field }: { field: FieldModel }) {
+        const repo = new GenericFieldRepository();
+		const response = await repo.create(field)
+        return response;
+    }
+};
+
+
+export const FieldQuery = {
+    field: get,
+    fields: retrieve,
+};
+
+export const FieldMutation = {
+    createField: create
+}
+
