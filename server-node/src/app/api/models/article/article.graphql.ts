@@ -3,7 +3,7 @@ import {
     GraphQLFieldConfig,
     GraphQLID,
     GraphQLString,
-	GraphQLBoolean,
+    GraphQLBoolean,
     GraphQLList,
     GraphQLInputObjectType,
     GraphQLUnionType,
@@ -15,12 +15,40 @@ import {
 import { Block } from "./../block/block.graphql";
 export const ArticleInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
     name: "ArticleInterface",
-	fields: {
-		name: { type: new GraphQLNonNull(GraphQLString) },
-		title: { type: new GraphQLNonNull(GraphQLString) },
-		description: { type: new GraphQLNonNull(GraphQLString) },
-		dateCreated:  { type: new GraphQLNonNull(GraphQLString) },
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        dateCreated: { type: new GraphQLNonNull(GraphQLString) },
         dateUpdated: { type: new GraphQLNonNull(GraphQLString) },
-        blocks: { type: new GraphQLList(Block)}
-	}
+        blocks: { type: new GraphQLList(Block) }
+    },
+    resolveType(value) {
+        return Article;
+    }
+});
+
+export const Article: GraphQLObjectType = new GraphQLObjectType({
+    name: "Article",
+    interfaces: [ArticleInterface],
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        dateCreated: { type: new GraphQLNonNull(GraphQLString) },
+        dateUpdated: { type: new GraphQLNonNull(GraphQLString) },
+        blocks: { type: new GraphQLList(Block) }
+    }
+});
+
+export const ArticleInput: GraphQLInputObjectType = new GraphQLInputObjectType({
+    name: "ArticleInput",
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        dateCreated: { type: new GraphQLNonNull(GraphQLString) },
+        dateUpdated: { type: new GraphQLNonNull(GraphQLString) },
+        blocks: { type: new GraphQLList(GraphQLID) }
+    }
 });
