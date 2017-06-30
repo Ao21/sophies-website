@@ -12,7 +12,7 @@ import {
     GraphQLNonNull
 } from "graphql";
 
-import { Block } from "./../block/block.graphql";
+import { Block, BlockInput } from "./../block/block.graphql";
 export const ArticleInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
     name: "ArticleInterface",
     fields: {
@@ -49,6 +49,6 @@ export const ArticleInput: GraphQLInputObjectType = new GraphQLInputObjectType({
         description: { type: new GraphQLNonNull(GraphQLString) },
         dateCreated: { type: new GraphQLNonNull(GraphQLString) },
         dateUpdated: { type: new GraphQLNonNull(GraphQLString) },
-        blocks: { type: new GraphQLList(GraphQLID) }
+        blocks: { type: new GraphQLList(BlockInput) }
     }
 });

@@ -10,7 +10,7 @@ export const ArticleSchema = new mongoose.Schema({
 	description: String,
 	dateCreated: Date,
 	dateUpdated: Date,
-	blocks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Block" }]
+	blocks: []
 })
 
 ArticleSchema.virtual("id").get(() => this.id);

@@ -40,6 +40,6 @@ export const BlockInput: GraphQLInputObjectType = new GraphQLInputObjectType({
 	name: "BlockInput",
 	fields: {
 		name: { type: GraphQLString },
-		fields: { type: new GraphQLList(GraphQLID)}
+		fields: { type: new GraphQLList(FieldInput)}
 	}
 })

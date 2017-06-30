@@ -5,6 +5,11 @@ import { BlockModel } from "./../block/block.model";
 import { Article, ArticleInput } from "./article.graphql";
 import { ArticleRepository } from "./article.mongodb";
 
+/**
+ * Current Idea: Use the articles repos to store the whole thing, using the blocks/templates
+ * query projection to build an object to store as a normal (non projected) object inside the articles
+ */
+
 export interface ArticleModel extends mongoose.Document {
 	name: string;
 	title: string;
