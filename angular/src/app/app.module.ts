@@ -5,15 +5,22 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
+import { FeaturesModule } from './components/features/features.module';
 import { LayoutModule } from './components/layout/layout.module';
 import { CoreModule } from './core/core.module';
 
-import { routing } from './app.routes';
+import { OutletsModule } from './components/outlets/outlets.module';
+
+import { AppRoutingModule } from './app.routes';
+
+import { AuthModule } from './core/auth/auth.httpfactory';
+
+import { SERVICES_MODULE } from './services/services.module';
+
+import { Apollo } from './core/apollo/apollo.client';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-	],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		FormsModule,
@@ -21,11 +28,13 @@ import { routing } from './app.routes';
 		HttpModule,
 		PagesModule,
 		CoreModule,
-		routing
+		FeaturesModule,
+		OutletsModule,
+		AppRoutingModule,
+		AuthModule,
+		Apollo
 	],
-	providers: [],
-	bootstrap: [
-		AppComponent
-	]
+	providers: [...SERVICES_MODULE],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

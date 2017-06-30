@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './components/layout/layout.module';
 import { PagesModule } from './pages/pages.module';
-import { routing } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 
 describe('AppComponent', () => {
 	beforeEach(async(() => {
