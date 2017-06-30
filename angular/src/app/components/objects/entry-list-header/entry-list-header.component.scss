@@ -1,0 +1,34 @@
+@import "./../../../../styles/utils/utils";
+
+:host,
+.entry-list-header {
+	display: flex;
+	flex-flow: row nowrap;
+	border-bottom: 1px solid $color-border-dark;
+	padding: 8px $spacing-half 0px;
+
+
+	
+	& > * {
+		flex: 1 0;
+	}
+
+	p {
+		 @include type-scale(-2);
+		 text-transform: uppercase;
+		 font-weight: 600;
+		 color: $color-gray-d;
+		 margin: 0 $spacing-quarter;
+	}
+
+	&__title {
+		flex: 1 0 auto;
+		max-width: 600px;
+	}
+	&__type {
+		flex: 0 0 80px;
+	}
+	&__postdate {
+		flex: 0 0 80px;
+	}
+}

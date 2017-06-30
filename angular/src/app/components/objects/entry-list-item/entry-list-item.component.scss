@@ -1,0 +1,31 @@
+@import "./../../../../styles/utils/utils";
+
+:host,
+.entry-list-item {
+	display: flex;
+	flex-flow: row nowrap;
+	border-bottom: 1px solid $color-border-light;
+	padding: 8px $spacing-half;
+
+
+
+	& > * {
+		flex: 1 0;
+	}
+
+	p {
+		 @include type-scale(-1);
+		 margin: 0 $spacing-quarter;
+	}
+
+	&__title {
+		flex: 1 0 auto;
+		max-width: 600px;
+	}
+	&__type {
+		flex: 0 0 80px;
+	}
+	&__postdate {
+		flex: 0 0 80px;
+	}
+}
