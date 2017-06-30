@@ -1,0 +1,17 @@
+@import "./../../../../styles/utils/utils";
+
+:host {
+	background-color:$color-gray-xxl;
+
+	header {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 0 $spacing-one-half;
+		height: 100%;
+		& > * {
+			flex: 0 0 auto;
+			margin: 0;
+		}
+	}
+}
