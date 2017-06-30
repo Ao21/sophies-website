@@ -16,6 +16,7 @@
     "@playlyfe/gql": "^2.3.1",
     "@types/express": "^4.0.36",
     "@types/express-graphql": "0.0.33",
+    "@types/formidable": "^1.0.29",
     "@types/graphql": "^0.9.1",
     "@types/lodash": "^4.14.66",
     "@types/mongoose": "^4.7.18",
@@ -35,9 +36,13 @@
     "babel-cli": "^6.24.1",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
+    "express-jwt": "^5.3.0",
+    "express-jwt-authz": "^1.0.0",
+    "formidable": "^1.1.1",
     "gql-merge": "0.0.6",
     "graphql": "^0.10.3",
     "graphql-tools": "^1.0.0",
+    "jwks-rsa": "^1.2.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.10.8"
   }
