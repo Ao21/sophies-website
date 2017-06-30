@@ -1,0 +1,33 @@
+@import "./../../../../styles/utils/utils";
+
+:host {
+	display: grid;
+	grid-template-columns: 20% [col-header-end] 80%;
+	grid-template-rows: 100% 100%;
+	height: 100%;
+	grid-template-areas: "sidebar content";
+
+	grid-gap: 5px 0;
+
+	.sidebar {
+		grid-area: sidebar;
+		background-color: $color-light-d;
+
+		header {
+			height: 5rem;
+			display: flex;
+			align-items: flex-end;
+			border-bottom: 1px solid $color-border-light;
+
+			p {
+				padding-left: $spacing-whole;
+				margin-bottom: $spacing-quarter;
+			}
+		}
+	}
+
+	.entries {
+		grid-area: content;
+		padding: $spacing-double $spacing-one-half;
+	}
+}
