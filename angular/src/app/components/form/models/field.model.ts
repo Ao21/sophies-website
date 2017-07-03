@@ -1,20 +1,30 @@
 export class BaseField<T> {
+	key: string;
 	id: string;
-	value?: T;
-	required: boolean;
 	type: string;
+	config?: {
+		label?: string;
+		placeholder?: string;
+		required?: boolean;
+		validators?: [string];
+		description?: string;
+	};
+	value?: any;
+	options?: [any];
+	childFields?: [any];
 
 	constructor(
 		options: {
 			id?: string;
 			value?: T;
+			key?: string;
 			required?: boolean;
 			type?: string;
 		} = {}
 	) {
 		this.id = options.id;
 		this.value = options.value;
-		this.required = options.required;
+		this.key = options.key;
 		this.type = options.type;
 	}
 }
