@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CheckboxModule } from './checkbox/checkbox.module';
+import { SearchBoxModule } from './search-box/search-box.module';
 
 @NgModule({
-	imports: [CommonModule, CheckboxModule],
+	imports: [CommonModule, SearchBoxModule],
 	declarations: [],
-	exports: [CheckboxModule]
+	exports: [SearchBoxModule]
 })
 export class ElementsModule {}
