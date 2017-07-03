@@ -10,11 +10,9 @@ import { AssetManagerModule } from './asset-manager/asset-manager.module';
 	imports: [
 		CommonModule,
 		EntryListModule,
-		EntryListItemModule,
-		EntryListHeaderModule,
 		AssetManagerModule
 	],
 	declarations: [],
-	exports: [EntryListModule, EntryListItemModule, EntryListHeaderModule, AssetManagerModule]
+	exports: [EntryListModule, AssetManagerModule]
 })
 export class ObjectsModule {}

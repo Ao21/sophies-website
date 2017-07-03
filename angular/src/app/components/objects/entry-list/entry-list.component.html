@@ -1,2 +1,2 @@
 <entry-list-header></entry-list-header>
-<entry-list-item *ngFor="let entry of entryList" [entry]="entry"></entry-list-item>
+<entry-list-item *ngFor="let entry of entryList, let index = index" [entry]="entry" [name]="index"></entry-list-item>

@@ -20,7 +20,9 @@
 		 color: $color-gray-d;
 		 margin: 0 $spacing-quarter;
 	}
-
+	&__space {
+		flex: 0 0 32px;
+	}
 	&__title {
 		flex: 1 0 auto;
 		max-width: 600px;

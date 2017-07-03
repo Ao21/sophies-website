@@ -8,7 +8,10 @@
 	padding: 8px $spacing-half;
 
 
-
+	checkbox-field {
+		margin-bottom: 0;
+		flex: 0 0 30px;
+	}
 	& > * {
 		flex: 1 0;
 	}
