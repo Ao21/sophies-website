@@ -1,3 +1,18 @@
-<p>
-  input-field works!
-</p>
+<label [for]="question.key">{{question.config?.label}}</label>
+<p *ngIf="question.config?.description" class="input-field__helper">{{question.config?.description}}</p>
+<input 
+  #input 
+  class="df-question__input-text df-question" 
+  [class.ng-has-value]="control.value !== ''" 
+  [formControl]="control"
+  [attr.aria-label]="question?.config?.label" 
+  [attr.aria-labelledby]="question.key" 
+  [attr.aria-disabled]="control.disabled"
+  [attr.aria-required]="question.required" 
+  [attr.aria-invalid]="ariaInvalid" 
+  [attr.autocapitalize]="question.autocapitalize"
+  [attr.autocomplete]="question.autocomplete" 
+  [attr.autocorrect]="question.autocorrect" 
+  [placeholder]="question?.config?.placeholder"
+  [id]="question.key" 
+  [type]="question.type">

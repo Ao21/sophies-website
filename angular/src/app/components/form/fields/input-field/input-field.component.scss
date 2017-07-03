@@ -1,0 +1,17 @@
+@import "./../../../../../styles/utils/utils";
+
+:host,
+.input-field {
+	float: left;
+	width: 100%;
+	margin-bottom: $spacing-whole;
+	&__helper {
+		@include o-prefix;
+	}
+	input {
+		@include o-input;
+	}
+	label {
+		@include o-label;
+	}
+}
