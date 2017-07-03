@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild, AfterViewInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { slideInDownAnimation } from './../../../core/animations/generic-route.animation';
@@ -9,11 +10,17 @@ import { slideInDownAnimation } from './../../../core/animations/generic-route.a
 	styleUrls: ['./asset-manager.component.scss'],
 	animations: [slideInDownAnimation]
 })
-export class AssetManagerComponent implements OnInit {
+export class AssetManagerComponent implements OnInit, AfterViewInit {
 	@HostBinding('@routeAnimation') routeAnimation = true;
-	constructor(private router: Router) {}
+	constructor(private router: Router) { }
 
-	ngOnInit() {}
+	ngOnInit() { }
+
+	ngAfterViewInit() {
+	}
+	entryListChanges($event) {
+		console.log($event);
+	}
 
 	closePopup() {
 		console.log('hi!');

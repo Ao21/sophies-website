@@ -7,7 +7,7 @@
     <p>All Assets</p>
   </nav>
   <section class="asset-manager__list">
-    <entry-list></entry-list>
+    <entry-list (change)="entryListChanges($event)" #entryList></entry-list>
   </section>
   <footer>
     <div class="button-group">
