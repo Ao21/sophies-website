@@ -1,3 +1,30 @@
-<p>
-  dynamic-form works!
-</p>
+<form [formGroup]="form">
+  <div *ngFor="let field of questions" class="form__field-container">
+    <input-field 
+      *ngIf="field.type === 'text'"
+      [question]="field"
+      [formControl]="getFormControl(field.key)"
+      [control]="getFormControl(field.key)">
+    </input-field>
+    <toggle-field 
+      *ngIf="field.type === 'toggle'"
+      [question]="field"
+      [formControl]="getFormControl(field.key)"
+      [control]="getFormControl(field.key)">
+    </toggle-field>
+    <textarea-field
+      *ngIf="field.type === 'textarea'"
+      [formControl]="getFormControl(field.key)">
+    </textarea-field>
+    <checkbox-field
+      *ngIf="field.type === 'checkbox'"
+      [formControl]="getFormControl(field.key)">
+     Checkbox!
+    </checkbox-field>
+    <date-field
+      *ngIf="field.type === 'date'"
+      [formControl]="getFormControl(field.key)">
+     Checkbox!
+    </date-field>
+  </div>
+</form>
