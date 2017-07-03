@@ -3,7 +3,7 @@ import * as mongoose from "mongoose";
 import { TextField } from "./field.mongodb";
 import { Field, FieldInput } from "./field.graphql";
 
-import { GenericFieldRepository } from "./field.mongodb";
+import { GenericFieldRepository, getRepoType } from "./field.mongodb";
 
 // Checkout https://github.com/koistya/graphql-express-mongodb-example
 
@@ -15,13 +15,13 @@ import {
 } from "graphql";
 
 export interface FieldModel extends mongoose.Document {
-    key: String;
-    type: String;
+    key: string;
+    type: string;
     config?: {
-        label?: String;
-        placeholder?: String;
-        required?: Boolean;
-        validators?: [String];
+        label?: string;
+        placeholder?: string;
+        required?: boolean;
+        validators?: [string];
     };
     value?: any;
     options: [any];
@@ -65,7 +65,8 @@ const create: GraphQLFieldConfig<any, any> = {
         field: { type: FieldInput },
     },
     async resolve(root: any, { field }: { field: FieldModel }) {
-        const repo = new GenericFieldRepository();
+        console.log(field);
+        const repo =  getRepoType(field.type);
 		const response = await repo.create(field)
         return response;
     }

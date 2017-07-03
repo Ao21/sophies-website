@@ -13,7 +13,7 @@ import infoToProjection from "graphql-mongodb-projection";
 /**
  * Current Plan is to use block models and field models as templates, which
  * are then just stored as normal objects inside of the articles, which will be unique
- * while the Block/Fields are just stored sets that are projected in the find queries
+ * while the Block/Fields are just generics that are projected in the queries
  */
 
 export interface BlockModel extends mongoose.Document {
