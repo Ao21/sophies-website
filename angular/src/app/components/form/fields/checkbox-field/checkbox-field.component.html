@@ -1,0 +1,31 @@
+<label [attr.for]="inputId" #label>
+
+  <div class="checkbox-field__inner">
+    <input 
+    #input
+    class="visually-hidden" type="checkbox"
+    [id]="inputId"
+    [required]="required"
+    [checked]="checked"
+    [value]="value"
+    [disabled]="disabled"
+    [name]="name"
+    [tabIndex]="tabIndex"
+    [indeterminate]="indeterminate"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledby"
+    (change)="_onInteractionEvent($event)"
+    (click)="_onInputClick($event)">
+
+    <div class="checkbox-field__frame"></div>
+    <div class="checkbox-field__background"></div>
+  </div>
+
+  <span #checkboxLabel>
+    <!-- Add an invisible span so JAWS can read the label -->
+    <span style="display:none">&nbsp;</span>
+    <ng-content></ng-content>
+  </span>
+
+  
+</label>
