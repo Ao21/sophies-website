@@ -14,6 +14,8 @@ import {
 
 import { BaseField } from './../../models/field.model';
 
+import { isPresent } from './../../../../core/utils/facade';
+
 import {
 	NG_VALUE_ACCESSOR,
 	ControlValueAccessor,
@@ -160,8 +162,8 @@ export class CheckboxFieldComponent extends _CheckboxMixingBase
 	ngOnInit() {}
 
 	/** Toggles the `checked` state of the checkbox. */
-	toggle(): void {
-		this.checked = !this.checked;
+	toggle(val?): void {
+		this.checked = isPresent(val) ? val : !this.checked;
 	}
 
 	private _emitChangeEvent() {
