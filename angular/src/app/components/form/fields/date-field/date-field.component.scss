@@ -1,0 +1,24 @@
+@import "./../../../../../styles/utils/utils";
+
+:host,
+.date-field {
+	float: left;
+
+	
+	&__container {
+		@include o-input();
+		width: auto;
+		padding: 0;
+	}
+
+	input {
+		padding: $spacing-two-thirds $spacing-half;
+		margin: 0;
+		height: 100%;
+		border: none;
+		position: relative;
+		border-right: 1px solid rgba(151,151,151,0.07);
+		
+	}
+
+}

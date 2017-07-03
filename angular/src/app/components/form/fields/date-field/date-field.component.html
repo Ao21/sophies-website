@@ -1,0 +1,5 @@
+<div [formGroup]="dateControl" class="date-field__container">
+  <input (input)="_autoTab($event, month)" formControlName="day" maxlength="2" placeholder="DD" #day type="tel">
+  <input (input)="_autoTab($event, year)" formControlName="month" maxlength="2" placeholder="MM" #month type="tel">
+  <input formControlName="year" maxlength="4" placeholder="YYYY" #year type="tel">
+</div>
