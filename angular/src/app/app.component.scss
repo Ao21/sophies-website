@@ -3,4 +3,9 @@ app-root{
 	position: relative;
 	float: left;
 	width: 100%;
+
+	.popunder {
+		position: fixed;
+		bottom: 0;
+	}
 }
