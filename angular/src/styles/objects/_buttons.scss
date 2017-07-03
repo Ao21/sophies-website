@@ -1,0 +1,16 @@
+.button {
+	padding: 0.5rem 0.75rem;
+	background: $color-light;
+	border-radius: 3px;
+	border: 1px solid $color-border-light;
+	box-shadow: none;
+
+	& + & {
+		margin-left: $spacing-half;
+	}
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+}

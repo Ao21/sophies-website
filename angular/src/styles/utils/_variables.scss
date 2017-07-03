@@ -33,6 +33,9 @@ $spacing-third: $base-height / 3;
 $spacing-half: $base-height / 2;
 /// @group spacing
 /// @require {variable} $base-height
+$spacing-two-thirds: $base-height / 1.5;
+/// @group spacing
+/// @require {variable} $base-height
 $spacing-whole: $base-height;
 /// @group spacing
 /// @require {variable} $base-height
@@ -52,6 +55,10 @@ $spacing-quad: $base-height * 4;
 $color-background-light: rgba(217,217,217,0.18);
 /// @group colors
 /// @type Color
+$color-inset-shadow: rgba(223,223,223,0.4);
+/// @group colors
+/// @type Color
+$color-border-gray: rgba(232,232,232,1);
 $color-border-light: rgba(151,151,151,0.18);
 $color-border-dark: rgba(151,151,151,1);
 /// @group colors
@@ -76,6 +83,7 @@ $color-light-d: #FBFBFB;
 
 $color-green: rgba(164,239, 222, 1);
 
+$default-border-radius: 2px;
 
 
 

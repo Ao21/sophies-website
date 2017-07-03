@@ -1,0 +1,22 @@
+@mixin o-input() {
+	width: 100%;
+	background-color: white;
+	box-shadow: none;
+	border-radius: 3px;
+	border: 1px solid $color-border-gray;
+	padding: $spacing-two-thirds $spacing-half;
+}
+
+@mixin o-prefix() {
+	float: left;
+	width: 100%;
+	@include type-scale(-1);
+	margin-bottom: $spacing-half;
+}
+
+@mixin o-label() {
+	@include type-scale(0);
+	margin-bottom: $spacing-quarter;
+	float: left;
+	font-weight: 600;
+}

@@ -2,7 +2,7 @@ section {
 	width: 100%;
 	float: left;
 }
-article {
+section.fixed article {
 	@include mq(small){
 		max-width: 100%;
 	}

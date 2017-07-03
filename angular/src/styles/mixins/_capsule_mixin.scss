@@ -1,0 +1,9 @@
+@mixin o-capsule(){
+	background-color: white;
+
+	&__content {
+		float: left;
+		width: 100%;
+		padding: $spacing-double $spacing-whole $spacing-whole;
+	}
+}
