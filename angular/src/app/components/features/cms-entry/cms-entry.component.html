@@ -1,4 +1,13 @@
 <section class="entry">
   <h2>Create a new Entry</h2>
+  <section class="capsule">
+    <div class="capsule__content">
+      <dynamic-form></dynamic-form>
+    </div>
+    
+  </section>
+  
 </section>
-<aside></aside>
+<aside>
+  <button [routerLink]="['/',{ outlets: { popup: ['compose'] } }]">Open Popup</button>
+</aside>
