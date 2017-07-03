@@ -1,0 +1,46 @@
+@import "./../../../../../styles/utils/utils";
+
+:host,
+.toggle-field {
+	float: left;
+	width: 100%;
+	margin-bottom: $spacing-whole;
+
+	label {
+		@include o-label;
+	}
+
+	&__helper {
+		@include o-prefix;
+	}
+
+	&__container {
+		float: left;
+		clear: both;
+		height: 2rem;
+		width: 3rem;
+		border-radius: 16px;
+		background-color:#F3F3F3;
+		box-shadow: inset -1px 0 5px $color-inset-shadow;
+	}
+
+	&__toggle {
+		height: 2rem;
+		width: 2rem;
+		border-radius: 50%;
+		background-color: white;
+		border: 1px solid $color-green;
+		transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+		
+	}
+
+	&.is-checked {
+		.toggle-field__container {
+			background-color:$color-green;
+			box-shadow: inset 1px 0 5px $color-inset-shadow;
+		}
+		.toggle-field__toggle {
+			transform: translateX(1rem);
+		}
+	}
+}

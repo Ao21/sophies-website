@@ -1,0 +1,5 @@
+<label [for]="question.key">{{question.config?.label}}</label>
+<p *ngIf="question.config?.description" class="toggle-field__helper">{{question.config?.description}}</p>
+<div (click)="toggleChecked()" class="toggle-field__container">
+  <div class="toggle-field__toggle"></div>
+</div>
