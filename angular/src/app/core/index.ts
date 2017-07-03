@@ -7,9 +7,16 @@
  */
 
 // Gestures
-export {GestureConfig} from './gestures/gesture-config';
+export { GestureConfig } from './gestures/gesture-config';
 // Explicitly specify the interfaces which should be re-exported, because if everything
 // is re-exported, module bundlers may run into issues with treeshaking.
-export {HammerInput, HammerManager} from './gestures/gesture-annotations';
+export { HammerInput, HammerManager } from './gestures/gesture-annotations';
+
+export {
+	UniqueSelectionDispatcher,
+	UniqueSelectionDispatcherListener,
+	UNIQUE_SELECTION_DISPATCHER_PROVIDER
+} from './coordination/unique-selection-dispatcher';
+
 
 export * from './core.module';
