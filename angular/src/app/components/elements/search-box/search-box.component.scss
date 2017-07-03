@@ -1,0 +1,17 @@
+@import "./../../../../styles/utils/utils";
+
+:host,
+.search-box {
+	img {
+		position: absolute;
+		margin-top: 15px;
+		margin-left: $spacing-half;
+	}
+	input {
+		@include o-input;
+		border:none;
+		padding-left: $spacing-double;
+		background-color: $color-light;
+		border-radius: 0;
+	}
+}
