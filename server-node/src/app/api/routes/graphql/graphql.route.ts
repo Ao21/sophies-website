@@ -15,7 +15,6 @@ export class GraphQlRoutes {
     }
 
     createRoutes(): express.Router {
-
 		const schema = new GraphQLSchema({query: BaseQuery, mutation: BaseMutation});
 
         this.router.use(
