@@ -6,6 +6,8 @@ import {
 	Optional,
 	Renderer2,
 	forwardRef,
+	Output,
+	EventEmitter,
 	OnDestroy,
 	ElementRef,
 	Inject,
@@ -13,8 +15,12 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef
 } from '@angular/core';
-import { EntryListComponent } from './../entry-list/entry-list.component';
+import { EntryListComponent, EntryListFieldConfig, EntryListConfig } from './../entry-list/entry-list.component';
+
 import { UniqueSelectionDispatcher } from './../../../core/index';
+
+import { findPropertyDeep } from './../../../core/utils/facade';
+import * as _ from 'lodash';
 
 let _uniqueIdCounter = 0;
 
@@ -30,26 +36,29 @@ export interface EntryListItem {
 
 @Component({
 	selector: 'entry-list-item',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: './entry-list-item.component.html',
 	styleUrls: ['./entry-list-item.component.scss']
 })
 export class EntryListItemComponent implements OnInit, OnDestroy {
+
+	@Input() fieldConfig: EntryListFieldConfig[];
+	@Input() config: any;
 	private _checked = false;
-	@Input() public entry: [EntryListItem];
+	private _value: any = null;
+	@Input() public entry: EntryListItem;
+
+	@Output() trigger: EventEmitter<any> = new EventEmitter();
 
 	@Input() id = `md-radio-${_uniqueIdCounter++}`;
 	@Input() name: string;
 
+	@ViewChild('checkbox') checkbox: CheckboxFieldComponent;
+
 	entryList: EntryListComponent;
+	settings: any;
 
 	/** Unregister function for _radioDispatcher **/
 	private _removeUniqueSelectionListener: () => void = () => { };
-
-	/** Value assigned to this radio.*/
-	private _value: any = null;
-
-	@ViewChild('checkbox') checkbox: CheckboxFieldComponent;
 
 	/** The value of this radio button. */
 	@Input()
@@ -81,6 +90,7 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 				this._entryDispatcher.notify(this.id, this.name);
 			}
 			this._changeDetector.markForCheck();
+			this._changeDetector.detectChanges();
 		}
 	}
 
@@ -95,6 +105,9 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 	) {
 		this.entryList = entryList;
 
+
+
+
 		this._removeUniqueSelectionListener = _entryDispatcher.listen(
 			(id: string, name: string) => {
 				if (id !== this.id && name === this.name) {
@@ -104,6 +117,10 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 			}
 		);
 	}
+
+	getFieldValue(entry, field) {
+		return findPropertyDeep(entry, field);
+	}
 	updateChecked(val: any) {
 		this.checked = val.checked;
 	}
@@ -111,7 +128,16 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 		this._removeUniqueSelectionListener();
 	}
 
+	emitSettingsEvent(triggerEvent) {
+		const fieldItemEvent = {
+			trigger: triggerEvent,
+			id: this.entry.id,
+			type: this.entry.type
+		};
+		this.trigger.next(fieldItemEvent);
+	}
+
 	ngOnInit() {
-		// console.log(this.entry);
+		this.settings = _.find(this.fieldConfig, (field) => field.type === 'settings');
 	}
 }

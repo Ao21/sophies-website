@@ -6,6 +6,7 @@
 	flex-flow: row nowrap;
 	border-bottom: 1px solid $color-border-light;
 	padding: 8px $spacing-half;
+	align-items: center;
 
 
 	checkbox-field {
@@ -21,14 +22,25 @@
 		 margin: 0 $spacing-quarter;
 	}
 
-	&__title {
+	&__fluid {
 		flex: 1 0 auto;
-		max-width: 600px;
+	}
+	&__text {
+		flex: 0 0 80px;
 	}
 	&__type {
 		flex: 0 0 80px;
 	}
 	&__postdate {
 		flex: 0 0 80px;
+	}
+	&__img {
+		max-height: 24px;
+		flex: 0 0 auto;
+	}
+
+	drop-list {
+		flex: 0 0 20px;
+		max-width: 20px;
 	}
 }

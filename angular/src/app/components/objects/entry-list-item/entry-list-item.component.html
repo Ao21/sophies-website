@@ -1,4 +1,8 @@
 <checkbox-field #checkbox [value]="checked" (change)="updateChecked($event)"></checkbox-field>
-<p class="entry-list-item__title">{{entry.title}}</p>
-<p class="entry-list-item__type">{{entry.type}}</p>
-<p class="entry-list-item__postdate">{{entry.postdate}}</p>
+<ng-template ngFor let-item [ngForOf]="fieldConfig" let-i="index">
+	<img *ngIf="item.type === 'img'" class="entry-list-item__{{item.type}}" [src]="entry[item.field]" alt="">
+	<p *ngIf="item.type === 'text' || item.type === 'fluid'" class="entry-list-item__{{item.type}}">{{getFieldValue(entry,item.field)}}</p>
+</ng-template>
+<drop-list (trigger)="emitSettingsEvent($event)" *ngIf="settings" [entries]="settings.options">
+	<header><img src="assets/cms/icons/settings.svg" alt=""></header>
+</drop-list>

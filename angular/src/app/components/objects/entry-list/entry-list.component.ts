@@ -5,6 +5,8 @@ import {
 	ContentChildren,
 	ViewChildren,
 	Injectable,
+	OnChanges,
+	OnDestroy,
 	Output,
 	EventEmitter,
 	Input,
@@ -17,8 +19,22 @@ import { UniqueSelectionDispatcher } from './../../../core/';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 import { EntryListItemComponent } from './../entry-list-item/entry-list-item.component';
+import { Apollo, ApolloQueryObservable } from 'apollo-angular';
+
+import { GetAllAssetsQuery } from './../../../queries/assets.query';
+
 
 import * as _ from 'lodash';
+
+export interface EntryListConfig {
+	selectable: boolean;
+}
+
+export interface EntryListFieldConfig {
+	field: string;
+	header: string;
+	type: string;
+}
 
 /**
  * Provider Expression that allows md-radio-group to register as a ControlValueAccessor. This
@@ -48,41 +64,31 @@ export class EntryListChange {
 	styleUrls: ['./entry-list.component.scss']
 })
 export class EntryListComponent
-	implements OnInit, AfterViewInit, ControlValueAccessor {
+	implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy, OnChanges {
 
 	@Output() change: EventEmitter<EntryListChange> = new EventEmitter<EntryListChange>();
-
+	@Output() listItemEvent: EventEmitter<string> = new EventEmitter();
+	@Output() listHeaderEvent: EventEmitter<string> = new EventEmitter();
 
 	@ViewChildren(forwardRef(() => EntryListItemComponent)) _entries: QueryList<EntryListItemComponent>;
 
 	private _selected: {} | null = {};
 
-	entryList = [
-		{
-			id: 0,
-			title: 'The Future of Augmented Reality in Light temperature areas',
-			type: 'Article',
-			featured: true,
-			postdate: '29/12/1987'
-		},
-		{
-			id: 0,
-			title: 'The Future of Augmented Reality',
-			type: 'Article',
-			featured: true,
-			postdate: '29/12/1987'
-		},
-		{
-			id: 0,
-			title: 'The Future',
-			type: 'Article',
-			featured: true,
-			postdate: '29/12/1987'
-		}
-	];
+	@Input() config: EntryListConfig;
+	@Input() fieldConfig: EntryListFieldConfig[];
+	@Input() entries: any = [];
+	@Input() query: any;
 
 	_value: any[];
 
+	ngOnChanges(_) {
+		// console.log(_);
+
+	}
+
+	trackByFn(item) {
+		return item.id;
+	}
 	_controlValueAccessorChangeFn: (value: any) => void = () => {};
 
 	/**
@@ -103,14 +109,27 @@ export class EntryListComponent
 		}
 	}
 
-	constructor(private _changeDetector: ChangeDetectorRef) {}
+	constructor(
+		private apollo: Apollo,
+		private _changeDetector: ChangeDetectorRef) { }
 
-	ngOnInit() {}
+	ngOnInit() {
+		if (this.query) {
+			this.entries = this.apollo.watchQuery({ query: this.query, fetchPolicy:  'network-only' })
+				.map((x) => x.data)
+				.map((x: any) => x.assets)
+				.do((x) => {
+					setTimeout(() => {
+						this._changeDetector.detectChanges();
+					});
+				});
+		}
+	}
 
-	ngAfterViewInit() {
-		// this._entries.changes.subscribe(next => {
-		// 	console.log(next);
-		// });
+	ngAfterViewInit(){
+		this._entries.changes.subscribe(next => {
+			// console.log(next);
+		});
 	}
 
 	updateSelected(key, value) {
@@ -165,5 +184,13 @@ export class EntryListComponent
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this._changeDetector.markForCheck();
+	}
+
+	emitListItemEvent($event) {
+		this.listItemEvent.next($event);
+	}
+
+	ngOnDestroy() {
+		// console.log('destroyed!');
 	}
 }

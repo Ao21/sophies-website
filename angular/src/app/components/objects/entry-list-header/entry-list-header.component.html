@@ -1,4 +1,3 @@
-<div class="entry-list-header__space"></div>
-<p class="entry-list-header__title">Title</p>
-<p class="entry-list-header__type">Type</p>
-<p class="entry-list-header__postdate">Post Date</p>
+<ng-template ngFor let-item [ngForOf]="fieldConfig" let-i="index">
+	<p class="entry-list-header__{{item.type}}">{{item.header}}</p>
+</ng-template>

@@ -7,11 +7,12 @@
     <p>All Assets</p>
   </nav>
   <section class="asset-manager__list">
-    <entry-list (change)="entryListChanges($event)" #entryList></entry-list>
+    <entry-list [query]="query" [fieldConfig]="assetFieldConfig" [config]="assetListConfig"  *ngIf="!uploaderIsVisible" (change)="entryListChanges($event)" #entryList></entry-list>
+    <uploader (success)="onUploadSuccess($event)" *ngIf="uploaderIsVisible"></uploader>
   </section>
   <footer>
     <div class="button-group">
-      <button id="upload" class="button">Upload</button>
+      <button (click)="toggleUpload()" id="upload" class="button">Upload</button>
     </div>
     <div class="button-group">
       <button (click)="closePopup()" class="button">Cancel</button>

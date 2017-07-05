@@ -19,18 +19,33 @@
 		 font-weight: 600;
 		 color: $color-gray-d;
 		 margin: 0 $spacing-quarter;
+
+		 &:last-of-type {
+			 margin: 0;
+		 }
 	}
-	&__space {
-		flex: 0 0 32px;
-	}
-	&__title {
+	&__fluid {
 		flex: 1 0 auto;
-		max-width: 600px;
+	}
+	&__text {
+		flex: 0 0 80px;
 	}
 	&__type {
 		flex: 0 0 80px;
 	}
 	&__postdate {
 		flex: 0 0 80px;
+	}
+	&__img {
+		max-height: 24px;
+		min-width: 10px;
+		flex: 0 0 auto;
+	}
+	&__checkbox {
+		flex: 0 0 20px;
+	}
+
+	&__settings {
+		flex: 0 0 20px;
 	}
 }
