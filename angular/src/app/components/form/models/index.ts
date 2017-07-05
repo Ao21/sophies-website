@@ -3,3 +3,7 @@ export * from './input-field.model';
 export * from './toggle-field.model';
 export * from './checkbox-field.model';
 export * from './date-field.model';
+export * from './asset-field.model';
+export * from './textarea-field.model';
+export * from './select-field.model';
+export * from './field-group.model';

@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 
 import { BaseField } from './../../models/field.model';
-
 import { isPresent } from './../../../../core/utils/facade';
+import { coerceBooleanProperty } from './../../../../core/coercion/boolean-property';
 
 import {
 	NG_VALUE_ACCESSOR,
@@ -27,12 +27,13 @@ import {
 	mixinDisabled
 } from './../../../../core/common-behaviours/';
 
-import { coerceBooleanProperty } from './../../../../core/coercion/boolean-property';
+import { CheckboxField } from './../../models/checkbox-field.model';
+
 
 let nextId = 0;
 
 /**
- * Provider Expression that allows df-counter to register as a ControlValueAccessor. This
+ * Provider Expression that allows CheckboxField to register as a ControlValueAccessor. This
  * allows it to support [(ngModel)] and ngControl.
  */
 
@@ -60,7 +61,11 @@ export const _CheckboxMixingBase = mixinDisabled(CheckboxBase);
 	styleUrls: ['./checkbox-field.component.scss']
 })
 export class CheckboxFieldComponent extends _CheckboxMixingBase
-	implements OnInit, CanDisable, ControlValueAccessor {
+implements OnInit, CanDisable, ControlValueAccessor {
+
+	private _checked = false;
+	private _indeterminate = false;
+
 	@Input() id = `md-checkbox-${++nextId}`;
 	get inputId(): string {
 		return `input-${this.id}`;
@@ -76,6 +81,8 @@ export class CheckboxFieldComponent extends _CheckboxMixingBase
 	set required(value) {
 		this._required = coerceBooleanProperty(value);
 	}
+
+	@Input() question: CheckboxField;
 
 	@Input() tabIndex = 0;
 
@@ -93,8 +100,7 @@ export class CheckboxFieldComponent extends _CheckboxMixingBase
 	@Input() value: string;
 
 	onTouched: () => any = () => {};
-	private _checked = false;
-	private _indeterminate = false;
+
 	private _controlValueAccessorChangeFn: (value: any) => void = () => {};
 
 	/**

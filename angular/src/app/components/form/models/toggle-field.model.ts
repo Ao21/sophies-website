@@ -1,10 +1,14 @@
-import { BaseField } from './field.model';
+import { BaseField, BaseFieldConfig } from './field.model';
 
 export class ToggleField extends BaseField<boolean> {
 	type = 'toggle';
-	value: boolean;
+	value = false;
 
 	constructor(options: {
+		id?: string;
+		key?: string;
+		required?: boolean;
+		config?: BaseFieldConfig;
 		value?: boolean;
 	} = {}) {
 		super(options);

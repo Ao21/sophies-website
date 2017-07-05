@@ -1,30 +1,22 @@
-<form [formGroup]="form">
-  <div *ngFor="let field of questions" class="form__field-container">
-    <input-field 
-      *ngIf="field.type === 'text'"
-      [question]="field"
-      [formControl]="getFormControl(field.key)"
-      [control]="getFormControl(field.key)">
+<form *ngIf="form" [formGroup]="form">
+  <div *ngFor="let field of fields" class="form__field-container">
+    <input-field *ngIf="field.type === 'text'" [question]="field" [formControl]="getFormControl(field.key)" [control]="getFormControl(field.key)">
     </input-field>
-    <toggle-field 
-      *ngIf="field.type === 'toggle'"
-      [question]="field"
-      [formControl]="getFormControl(field.key)"
-      [control]="getFormControl(field.key)">
+    <toggle-field *ngIf="field.type === 'toggle'" [question]="field" [formControl]="getFormControl(field.key)" [control]="getFormControl(field.key)">
     </toggle-field>
-    <textarea-field
-      *ngIf="field.type === 'textarea'"
-      [formControl]="getFormControl(field.key)">
+    <textarea-field *ngIf="field.type === 'textarea'" [question]="field" [formControl]="getFormControl(field.key)">
     </textarea-field>
-    <checkbox-field
-      *ngIf="field.type === 'checkbox'"
-      [formControl]="getFormControl(field.key)">
-     Checkbox!
+    <checkbox-field *ngIf="field.type === 'checkbox'" [question]="field" [formControl]="getFormControl(field.key)">
+      Checkbox!
     </checkbox-field>
-    <date-field
-      *ngIf="field.type === 'date'"
-      [formControl]="getFormControl(field.key)">
-     Checkbox!
+    <date-field *ngIf="field.type === 'date'" [question]="field" [formControl]="getFormControl(field.key)">
+      Checkbox!
     </date-field>
+    <asset-field *ngIf="field.type === 'asset'" [question]="field" [formControl]="getFormControl(field.key)">
+    </asset-field>
+    <select-field placeholder="name" [question]="field" [formControl]="getFormControl(field.key)" *ngIf="field.type === 'select'">
+      <option *ngFor="let option of field.options" [value]="option.value">{{option.name}}</option>
+    </select-field>
+    <dynamic-form subForm="true" *ngIf="field.type === 'group'" [form]="getFormControl(field.key)" [fields]="field.childFields"></dynamic-form>
   </div>
 </form>
