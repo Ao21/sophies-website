@@ -1,0 +1,22 @@
+<div class="drop-list__trigger" (click)="toggle()" #origin="cdkOverlayOrigin" #trigger cdk-overlay-origin>
+  <ng-content select="header"></ng-content>
+</div>
+
+<ng-template
+  cdk-connected-overlay
+  [origin]="origin"
+  [open]="panelOpen"
+  [positions]="_positions"
+  [width]="200"
+  [offsetY]="-8"
+  [offsetX]="12"
+  (detach)="close()">
+
+  <div class="drop-list__panel">
+    <header>
+      <p>Settings</p>
+      <img (click)="close()" src="assets/cms/icons/close.svg" alt="">
+    </header>
+    <option (click)="emitEvent(option)" *ngFor="let option of entries" [value]="option.trigger">{{option.name}}</option>
+  </div>
+</ng-template>

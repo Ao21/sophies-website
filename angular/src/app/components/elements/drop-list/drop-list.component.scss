@@ -1,0 +1,34 @@
+@import "./../../../../styles/utils/_utils";
+:host,
+.drop-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__trigger {
+		display: flex;
+		justify-content: center;
+		/deep/ header {
+			display: flex;
+			flex: 1 1 auto;
+		}
+	}
+	&__panel {
+		background-color: $color-green;
+		border: 1px solid $color-border-light;
+		header {
+			display: flex;
+			padding: $spacing-quarter $spacing-half  $spacing-quarter ;
+			p {
+				@include type-scale(-1);
+				margin: 0;
+				flex: 1 1 auto;
+			}
+
+			img {
+				flex: 0 0 24px;
+			}
+			
+
+		}
+	}
+}
