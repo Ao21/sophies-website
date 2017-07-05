@@ -13,13 +13,14 @@ import { CoreModule } from './core/core.module';
 
 import { OutletsModule } from './components/outlets/outlets.module';
 
-import { AppRoutingModule } from './app.routes';
+import { AppRoutingModule, APP_ROUTING_PROVIDERS } from './app.routes';
 
 import { AuthModule } from './core/auth/auth.httpfactory';
 
 import { SERVICES_MODULE } from './services/services.module';
 
 import { Apollo } from './core/apollo/apollo.client';
+import { Dropzone } from './core/uploading/dropzone';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -35,9 +36,12 @@ import { Apollo } from './core/apollo/apollo.client';
 		OutletsModule,
 		AppRoutingModule,
 		AuthModule,
-		Apollo
+		Apollo,
+		Dropzone
 	],
-	providers: [...SERVICES_MODULE],
+	providers: [
+		...APP_ROUTING_PROVIDERS,
+		...SERVICES_MODULE],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -16,7 +16,7 @@ export class CheckGetFieldResolve implements Resolve<any> {
 		const fieldId = route.params['id'];
 
 		if (fieldId === 'new') {
-			return Promise.resolve(true);
+			return Promise.resolve(false);
 		}
 
 		return new Promise((res, rej) => {
@@ -33,7 +33,7 @@ export class CheckGetFieldResolve implements Resolve<any> {
 						res(next);
 					},
 					err => {
-						res(true);
+						res(false);
 					}
 				);
 		});

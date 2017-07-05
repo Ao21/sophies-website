@@ -73,6 +73,22 @@ _global.assert = function assert(condition) {
 	// TODO: to be fixed properly via #2830, noop for now
 };
 
+export function flattenMyTree(tree) {
+	function recurse(nodes, path) {
+		return _.map(nodes, function(node: any) {
+			const newPath = _.union(path, [node.name]);
+			return [
+				_.assign(
+					{ pathname: newPath.join(' > '), level: path.length },
+					_.omit(node, 'children')
+				),
+				recurse(node.children, newPath)
+			];
+		});
+	}
+	return _.flattenDeep(recurse(tree, []));
+}
+
 export function isPresent(obj: any): boolean {
 	return obj != null;
 }
@@ -90,13 +106,39 @@ export function isStrictStringMap(obj: any): boolean {
 	);
 }
 
+export function mergeArrayByProp(array, prop) {
+	const dict = {};
+
+	function customizer(objValue, srcValue) {
+		if (_.isArray(objValue)) {
+			return objValue.concat(srcValue);
+		}
+	}
+
+	return _.reduce(
+		array,
+		(acc, obj, index) => {
+			if (dict[obj[prop]]) {
+				const idx = dict[obj[prop]];
+				acc[idx] = _.mergeWith({}, acc[idx], obj, customizer);
+			} else {
+				acc.push(obj);
+				dict[obj[prop]] = index;
+			}
+			return acc;
+		},
+		[]
+	);
+}
 
 export function findPropertyDeep(obj, key) {
-	if (_.has(obj, key)) {
-		return obj[key];
+	const newObj = _.assign({}, obj);
+
+	if (_.has(newObj, key)) {
+		return newObj[key];
 	}
 	return _.flatten(
-		_.map(obj, v => {
+		_.map(newObj, v => {
 			return typeof v === 'object' ? findPropertyDeep(v, key) : [];
 		}),
 		true
