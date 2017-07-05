@@ -3,6 +3,9 @@ import { Apollo } from 'apollo-angular';
 
 import gql from 'graphql-tag';
 
+import { SelectField } from './../components/form/models/select-field.model';
+
+
 export const FieldFragments = {
 	defaultFields: `fragment defaultFields on Field {
 		... on DateField {
@@ -26,7 +29,10 @@ const fieldsQuery = gql(`
 
 @Injectable()
 export class FieldService {
-	constructor(private apollo: Apollo) {}
+	constructor(private apollo: Apollo) { }
+
+
+
 
 	getFields() {
 		this.apollo.query({ query: fieldsQuery }).map(x => x.data).subscribe(
@@ -38,7 +44,4 @@ export class FieldService {
 			}
 		);
 	}
-
-
-
 }
