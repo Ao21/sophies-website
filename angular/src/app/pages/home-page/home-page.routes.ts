@@ -7,5 +7,5 @@ export const HomePageRoutes: Routes = [
 		component: HomePageComponent,
 		canActivate: [],
 		resolve: {},
-	}
+	},
 ];
