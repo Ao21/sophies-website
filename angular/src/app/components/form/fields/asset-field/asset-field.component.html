@@ -1,0 +1,5 @@
+<label [for]="question.key">{{question.config?.label}}</label>
+<section *ngIf="question.assetType==='img'">
+  <button class="button" *ngIf="value.length === 0">+ Add Asset</button>
+  <article *ngFor="let item of value"></article>
+</section>

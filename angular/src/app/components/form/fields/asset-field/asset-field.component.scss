@@ -1,0 +1,10 @@
+@import "./../../../../../styles/utils/utils";
+
+:host {
+	float: left;
+	margin-bottom: $spacing-whole;
+
+	label {
+		@include o-label();
+	}
+}
