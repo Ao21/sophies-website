@@ -2,6 +2,7 @@ import {
 	animate,
 	AnimationEntryMetadata,
 	state,
+	keyframes,
 	style,
 	transition,
 	trigger
@@ -35,4 +36,9 @@ export const slideInDownAnimation: AnimationEntryMetadata = trigger(
 			)
 		])
 	]
+);
+
+export const scaleUpAnimation: AnimationEntryMetadata = trigger(
+	'routeAnimation',
+	[]
 );

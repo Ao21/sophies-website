@@ -6,6 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+import * as _ from 'lodash';
+
 export interface BrowserNodeGlobal {
 	Object: typeof Object;
 	Array: typeof Array;
@@ -14,7 +16,7 @@ export interface BrowserNodeGlobal {
 	Date: DateConstructor;
 	RegExp: RegExpConstructor;
 	JSON: typeof JSON;
-	Math: any;  // typeof Math;
+	Math: any; // typeof Math;
 	assert(condition: any): void;
 	Reflect: any;
 	getAngularTestability: Function;
@@ -37,7 +39,10 @@ declare var global: any /** TODO #9100 */;
 
 let globalScope: BrowserNodeGlobal;
 if (typeof window === 'undefined') {
-	if (typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope) {
+	if (
+		typeof WorkerGlobalScope !== 'undefined' &&
+		self instanceof WorkerGlobalScope
+	) {
 		// TODO: Replace any with WorkerGlobalScope from lib.webworker.d.ts #3492
 		globalScope = <any>self;
 	} else {
@@ -78,7 +83,24 @@ export function isBlank(obj: any): boolean {
 
 const STRING_MAP_PROTO = Object.getPrototypeOf({});
 export function isStrictStringMap(obj: any): boolean {
-	return typeof obj === 'object' && obj !== null && Object.getPrototypeOf(obj) === STRING_MAP_PROTO;
+	return (
+		typeof obj === 'object' &&
+		obj !== null &&
+		Object.getPrototypeOf(obj) === STRING_MAP_PROTO
+	);
+}
+
+
+export function findPropertyDeep(obj, key) {
+	if (_.has(obj, key)) {
+		return obj[key];
+	}
+	return _.flatten(
+		_.map(obj, v => {
+			return typeof v === 'object' ? findPropertyDeep(v, key) : [];
+		}),
+		true
+	);
 }
 
 export function stringify(token: any): string {
@@ -112,12 +134,17 @@ export class NumberWrapper {
 		return result;
 	}
 
-	static isNumeric(value: any): boolean { return !isNaN(value - parseFloat(value)); }
+	static isNumeric(value: any): boolean {
+		return !isNaN(value - parseFloat(value));
+	}
 }
 
 // JS has NaN !== NaN
 export function looseIdentical(a: any, b: any): boolean {
-	return a === b || typeof a === 'number' && typeof b === 'number' && isNaN(a) && isNaN(b);
+	return (
+		a === b ||
+		(typeof a === 'number' && typeof b === 'number' && isNaN(a) && isNaN(b))
+	);
 }
 
 export function isJsObject(o: any): boolean {
@@ -162,8 +189,11 @@ export function getSymbolIterator(): string | symbol {
 			const keys = Object.getOwnPropertyNames(Map.prototype);
 			for (let i = 0; i < keys.length; ++i) {
 				const key = keys[i];
-				if (key !== 'entries' && key !== 'size' &&
-					(Map as any).prototype[key] === Map.prototype['entries']) {
+				if (
+					key !== 'entries' &&
+					key !== 'size' &&
+					(Map as any).prototype[key] === Map.prototype['entries']
+				) {
 					_symbolIterator = key;
 				}
 			}

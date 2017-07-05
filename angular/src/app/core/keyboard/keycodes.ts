@@ -6,6 +6,14 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 export const UP_ARROW = 38;
 export const DOWN_ARROW = 40;
 export const RIGHT_ARROW = 39;
@@ -20,3 +28,4 @@ export const TAB = 9;
 export const ESCAPE = 27;
 export const BACKSPACE = 8;
 export const DELETE = 46;
+
