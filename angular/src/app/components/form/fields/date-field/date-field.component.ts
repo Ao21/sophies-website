@@ -155,10 +155,28 @@ export class DateFieldComponent extends _DateFieldMixinBase implements OnInit {
 	}
 
 	/**
+	 * Updates the date by breaking it down into each component day/month/year and updating
+	 * each form control with the new values or no value
+	 */
+	updateDate(value) {
+		if (value && value.split('/').length > 2) {
+			const date = value.split('/');
+			this.day.setValue(parseFloat(date[0]));
+			this.month.setValue(parseFloat(date[1]));
+			this.year.setValue(parseFloat(date[2]));
+		} else {
+			this.day.setValue('');
+			this.month.setValue('');
+			this.year.setValue('');
+		}
+	}
+
+	/**
 	* Sets the model value. Implemented as part of ControlValueAccessor.
 	* @param value Value to be set to the model.
 	*/
 	writeValue(value: any) {
+		this.updateDate(value);
 		this.value = value;
 	}
 

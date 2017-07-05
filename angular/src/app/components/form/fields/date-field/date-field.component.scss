@@ -3,15 +3,24 @@
 :host,
 .date-field {
 	float: left;
+	margin-bottom: $spacing-whole;
 
 	
 	&__container {
 		@include o-input();
+		clear: both;
+		float: left;
 		width: auto;
 		padding: 0;
 	}
 
+	label {
+		@include o-label();
+		
+	}
+
 	input {
+		
 		padding: $spacing-two-thirds $spacing-half;
 		margin: 0;
 		height: 100%;
