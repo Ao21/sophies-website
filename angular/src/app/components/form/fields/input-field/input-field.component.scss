@@ -14,4 +14,16 @@
 	label {
 		@include o-label;
 	}
+
+	&.ng-invalid.ng-touched{
+		input {
+			border-color: $color-red-l;
+		}
+	}
+
+	&.ng-valid.ng-touched{
+		input {
+			border-color: $color-green;
+		}
+	}
 }

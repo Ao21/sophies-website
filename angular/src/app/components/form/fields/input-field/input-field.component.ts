@@ -65,7 +65,10 @@ export class InputFieldComponent extends _InputFieldMixinBase
 	get ariaInvalid(): boolean {
 		return !this.control.valid;
 	}
-	@HostBinding('tabindex') tabIndex = 0;
+
+	get tabindex() {
+		return this.disabled ? '-1' : '0';
+	}
 
 	/** Internal Value */
 	private _value: string;

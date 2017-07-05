@@ -5,6 +5,7 @@
   class="df-question__input-text df-question" 
   [class.ng-has-value]="control.value !== ''" 
   [formControl]="control"
+  [tabindex]="tabindex"
   [attr.aria-label]="question?.config?.label" 
   [attr.aria-labelledby]="question.key" 
   [attr.aria-disabled]="control.disabled"
