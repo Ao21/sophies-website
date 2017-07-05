@@ -14,7 +14,7 @@ const portfolioRoutes: Routes = [
 		path: '',
 		component: PortfolioComponent,
 		children: [...HomePageRoutes, ...ArticlePageRoutes]
-	}
+	},
 ];
 
 @NgModule({

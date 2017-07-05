@@ -17,7 +17,7 @@ const cmsRoutes: Routes = [
 			...LoginPageRoutes,
 			...CmsPageRoutes
 		]
-	}
+	},
 ];
 
 @NgModule({
