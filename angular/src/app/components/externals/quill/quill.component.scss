@@ -6,8 +6,15 @@
  * Copyright (c) 2013, salesforce.com
  */
 
+.quill_label {
+  @include o-label();
+  float: left;
+  width: 100%;
+
+}
 textarea-field {
    float: left;
+   clear: both;
    min-height: 175px;
    width: 100%;
    margin-bottom: $spacing-whole;

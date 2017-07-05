@@ -19,6 +19,8 @@ declare var require: any;
 
 const Quill = require('quill');
 
+import { TextAreaField } from './../../form/models/textarea-field.model';
+
 /**
  * Provider Expression that allows df-counter to register as a ControlValueAccessor. This
  * allows it to support [(ngModel)] and ngControl.
@@ -70,6 +72,7 @@ export class QuillComponent extends _QuillMixinBase
 		]
 	};
 
+	@Input() question: TextAreaField;
 	@Input() options: Object;
 
 	@Output() blur: EventEmitter<any> = new EventEmitter();
@@ -89,7 +92,7 @@ export class QuillComponent extends _QuillMixinBase
 	}
 
 	ngAfterViewInit() {
-		this.editorElem = this.elementRef.nativeElement.children[0];
+		this.editorElem = this.elementRef.nativeElement.children[1];
 
 		this.quillEditor = new Quill(
 			this.editorElem,

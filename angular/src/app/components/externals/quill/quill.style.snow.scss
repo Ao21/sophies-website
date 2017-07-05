@@ -840,6 +840,8 @@
   padding: 8px;
   border-top-left-radius: $default-border-radius;
   border-top-right-radius: $default-border-radius;
+  float: left;
+  width: 100%;
 }
 .ql-toolbar.ql-snow .ql-formats {
   margin-right: 15px;
@@ -934,4 +936,7 @@
   border: 1px solid $color-border-gray;
   border-bottom-left-radius: $default-border-radius;
   border-bottom-right-radius: $default-border-radius;
+    float: left;
+    width: 100%;
+
 }
