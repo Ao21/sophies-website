@@ -1,0 +1,26 @@
+@import "./../../../../styles/utils/utils";
+
+:host {
+	background-color: $color-light-d;
+	display: grid;
+
+	grid-template-columns: auto [col-header-end] 400px;
+	grid-template-rows: 100% 100%;
+	height: 100%;
+
+	grid-template-areas: "entry aside";
+
+	section.entry {
+		grid-area: entry;
+		padding: $spacing-whole $spacing-one-half;
+	}
+
+	.capsule {
+		@include o-capsule;
+	}
+
+	aside {
+		grid-area: aside;
+		padding: 6rem $spacing-half 0;
+	}
+}

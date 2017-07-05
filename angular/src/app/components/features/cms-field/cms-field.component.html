@@ -1,0 +1,18 @@
+<section class="entry">
+  <h2 *ngIf="!data.field">Create a new Field</h2>
+  <h2 *ngIf="data.field">Edit Field</h2>
+  <section class="capsule">
+    <div class="capsule__content">
+      <dynamic-form #dForm [fields]="mainForm" emitOnInit="true" (changes)="fieldUpdates($event)" ></dynamic-form>
+      <button (click)="createField()" [disabled]="!dForm?.form?.valid" class="button">Button</button>
+    </div>
+  </section>
+  
+</section>
+<aside>
+  <section class="capsule">
+    <article class="capsule__content">
+      <dynamic-form [fields]="sideForm" emitOnInit="true" (changes)="sideBarUpdate($event)"></dynamic-form>
+    </article>
+  </section>
+</aside>
