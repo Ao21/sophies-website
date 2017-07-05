@@ -8,7 +8,7 @@ export interface IRead<T> {
 
 export interface IWrite<T> {
     create: (item: T) => void;
-    update: (_id: mongoose.Types.ObjectId, item: T) => void;
+    update: (_id: string, item: T) => void;
     delete: (_id: string) => void;
 }
 
@@ -25,15 +25,16 @@ export class RepositoryBase<T extends mongoose.Document>
     }
 
     retrieve() {
-        this._model.find({});
+        return this._model.find({});
     }
 
-    update(_id: mongoose.Types.ObjectId, item: T) {
-        this._model.update({ _id: _id }, item);
+    update(_id: string, item: T) {
+        console.log(_id, item);
+        return this._model.update({ _id: _id }, item);
     }
 
     delete(_id: string) {
-        this._model.remove({ _id: this.toObjectId(_id) });
+        return this._model.remove({ _id: this.toObjectId(_id) });
     }
 
     findById(_id: string): mongoose.Query<T> {
