@@ -1,0 +1,62 @@
+@import "./../../../../../styles/utils/utils";
+
+@import './../../../../core/style/_menu-common';
+@import './../../../../core/style/list-common';
+@import './../../../../core/style/form-common';
+@import './../../../../core/style/variables';
+@import './../../../../core/style/vendor-prefixes';
+// @import './../../../../core/a11y/a11y';
+
+$mat-select-trigger-height: 30px !default;
+$mat-select-trigger-min-width: 112px !default;
+$mat-select-arrow-size: 5px !default;
+$mat-select-arrow-margin: 4px !default;
+$mat-select-panel-max-height: 256px !default;
+
+:host,
+.select-field {
+	float: left;
+	width: 100%;
+
+	label {
+	}
+
+	&__trigger {
+		@include o-input();
+		float: left;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		position: relative;
+		box-sizing: border-box;
+		
+	}
+
+	label {
+		@include o-label();
+	}
+
+	&__value {
+		flex: 1 1 auto;
+	}
+
+	&__arrow {
+		width: 0;
+		height: 0;
+		border-left: $mat-select-arrow-size solid transparent;
+		border-right: $mat-select-arrow-size solid transparent;
+		border-top: $mat-select-arrow-size solid;
+		margin: 0 $mat-select-arrow-margin;
+	}
+}
+
+.mat-select-panel {
+	@include mat-menu-base();
+	border-right: 1px solid $color-border-gray;
+	border-left: 1px solid $color-border-gray;
+	border-bottom: 1px solid $color-border-gray;
+	padding-top: 0;
+	padding-bottom: 0;
+	max-height: $mat-select-panel-max-height;
+	min-width: 100%; // prevents some animation twitching and test inconsistencies in IE11
+}

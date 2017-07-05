@@ -1,0 +1,45 @@
+<label [for]="question.key">{{question.config?.label}}</label>
+
+<div class="select-field__trigger" cdk-overlay-origin (click)="toggle()" #origin="cdkOverlayOrigin" #trigger>
+  <span
+    *ngIf="!_selectionModel.hasValue()"
+    class="select-field__placeholder"
+    [style.width.px]="_selectedValueWidth"> {{ placeholder }} </span>
+
+  <span class="select-field__value" *ngIf="_selectionModel.hasValue()">
+    <span class="select-field__value-text">{{ triggerValue }}</span>
+  </span>
+
+  <span class="select-field__arrow"></span>
+  <span class="select-field__underline"></span>
+</div>
+
+
+
+<ng-template
+  cdk-connected-overlay
+  hasBackdrop
+  backdropClass="cdk-overlay-transparent-backdrop"
+  [origin]="origin"
+  [open]="panelOpen"
+  [positions]="_positions"
+  [width]="_triggerWidth"
+  [offsetY]="_offsetY"
+  (backdropClick)="close()"
+  (attach)="_onAttached()"
+  (detach)="close()">
+
+  <div
+    class="mat-select-panel {{ 'mat-' + color }}"
+    [ngClass]="panelClass"
+    [@transformPanel]="multiple ? 'showing-multiple' : 'showing'"
+    (@transformPanel.done)="_onPanelDone()"
+    (keydown)="_handlePanelKeydown($event)"
+    [style.transformOrigin]="_transformOrigin"
+    [class.mat-select-panel-done-animating]="_panelDoneAnimating">
+
+    <div class="mat-select-content" [@fadeInContent]="'showing'" (@fadeInContent.done)="_onFadeInDone()">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>
