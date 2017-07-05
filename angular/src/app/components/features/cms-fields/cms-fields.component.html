@@ -1,0 +1,12 @@
+<nav class="sidebar">
+  <header>
+    <p>All Fields</p>
+  </header>
+</nav>
+<div class="entries">
+
+  <div class="entries__new">
+     <button [routerLink]="['./new']" class="button button--tiny">New Field</button>
+  </div>
+  <entry-list (listItemEvent)="triggerFieldEvent($event)" [fieldConfig]="fieldsConfig" [entries]="entries$ | async | select: 'fields'"></entry-list>
+</div>
