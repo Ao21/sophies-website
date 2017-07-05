@@ -20,9 +20,23 @@ export const FieldConfigInterface: GraphQLInterfaceType = new GraphQLInterfaceTy
 			placeholder: { type: GraphQLString },
 			required: { type: GraphQLBoolean },
 			validators: { type: new GraphQLList(GraphQLString) }
+		},
+		resolveType() {
+			return FieldConfigObject
 		}
 	}
 );
+
+export const FieldConfigObject = new GraphQLObjectType({
+	name: "FieldConfig",
+	fields: {
+		label: { type: GraphQLString },
+		placeholder: { type: GraphQLString },
+		required: { type: GraphQLBoolean },
+		validators: { type: new GraphQLList(GraphQLString) }
+	},
+	interfaces: [FieldConfigInterface]
+});
 export const FieldInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
 	name: "FieldInterface",
 	fields: {
@@ -50,8 +64,19 @@ export const FieldInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
 export const FieldInput: GraphQLInputObjectType = new GraphQLInputObjectType({
 	name: "FieldInput",
 	fields: {
+		id: { type: GraphQLID },
 		type: { type: new GraphQLNonNull(GraphQLString) },
-		key: { type: new GraphQLNonNull(GraphQLString) }
+		key: { type: new GraphQLNonNull(GraphQLString) },
+	}
+});
+
+export const FieldConfigInput: GraphQLInputObjectType = new GraphQLInputObjectType({
+	name: "FieldConfigInput",
+	fields: {
+		label: { type: GraphQLString },
+		placeholder: { type: GraphQLString },
+		required: { type: GraphQLBoolean },
+		validators: { type: new GraphQLList(GraphQLString) }
 	}
 });
 
@@ -62,7 +87,7 @@ export const TextField: GraphQLObjectType = new GraphQLObjectType({
 		id: { type: GraphQLID },
 		type: { type: new GraphQLNonNull(GraphQLString) },
 		key: { type: new GraphQLNonNull(GraphQLString) },
-		config: { type: FieldConfigInterface },
+		config: { type: FieldConfigObject },
 		value: { type: GraphQLString }
 	},
 	isTypeOf: value => value.type === "text"
@@ -75,7 +100,7 @@ export const DateField: GraphQLObjectType = new GraphQLObjectType({
 		id: { type: GraphQLID },
 		type: { type: new GraphQLNonNull(GraphQLString) },
 		key: { type: new GraphQLNonNull(GraphQLString) },
-		config: { type: FieldConfigInterface },
+		config: { type: FieldConfigObject },
 		value: { type: GraphQLString }
 	},
 	isTypeOf: value => value.type === "date"
@@ -88,7 +113,7 @@ export const AssetField: GraphQLObjectType = new GraphQLObjectType({
 		id: { type: GraphQLID },
 		type: { type: new GraphQLNonNull(GraphQLString) },
 		key: { type: new GraphQLNonNull(GraphQLString) },
-		config: { type: FieldConfigInterface },
+		config: { type: FieldConfigObject },
 		urls: { type: new GraphQLList(GraphQLString) }
 	},
 	isTypeOf: value => value.type === "asset"
@@ -101,7 +126,7 @@ export const FieldGroup: GraphQLObjectType = new GraphQLObjectType({
 		id: { type: GraphQLID },
 		type: { type: new GraphQLNonNull(GraphQLString) },
 		key: { type: new GraphQLNonNull(GraphQLString) },
-		config: { type: FieldConfigInterface },
+		config: { type: FieldConfigObject },
 		childFields: { type: new GraphQLList(FieldInterface) }
 	}
 });
@@ -118,8 +143,8 @@ export const Field: GraphQLUnionType = new GraphQLUnionType({
 		}
 		if (value.type === "group") {
 			return FieldGroup;
-        }
-        if (value.type === "asset") {
+		}
+		if (value.type === "asset") {
 			return AssetField;
 		}
 	}

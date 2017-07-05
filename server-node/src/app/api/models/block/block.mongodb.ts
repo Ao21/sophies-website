@@ -11,7 +11,7 @@ BlockSchema.virtual("id").get(() => this.id);
 BlockSchema.set("toObject", { virtuals: true });
 BlockSchema.set("toJSON", { virtuals: true });
 
-export const Block = mongoose.model("Block", BlockSchema);
+export const Block = mongoose.model("Block", BlockSchema, "Blocks");
 
 export class BlockRepository extends RepositoryBase<BlockModel> {
     constructor() {

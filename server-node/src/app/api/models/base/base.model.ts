@@ -16,12 +16,13 @@ import * as _ from "lodash";
 import { FieldQuery, FieldMutation } from "./../field/field.model";
 import { BlockQuery, BlockMutation } from "./../block/block.model";
 import { ArticleQuery, ArticleMutation } from "./../article/article.model";
+import { AssetQuery } from "./../assets/assets.model";
 
 export class BaseModel {}
 
 export const BaseQuery = new GraphQLObjectType({
     name: "Query",
-    fields: _.assign({}, FieldQuery, BlockQuery, ArticleQuery)
+    fields: _.assign({}, FieldQuery, BlockQuery, ArticleQuery, AssetQuery)
 });
 
 export const BaseMutation = new GraphQLObjectType({
