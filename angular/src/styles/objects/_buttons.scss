@@ -13,4 +13,11 @@
 		opacity: 0.8;
 	}
 
+	&--tiny {
+		padding: 0.25rem 0.5rem;
+		@include type-scale(-1);
+	}
+
+	
+
 }

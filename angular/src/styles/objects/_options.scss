@@ -1,0 +1,47 @@
+$md-menu-overlay-min-width: 112px !default; // 56 * 2
+$md-menu-overlay-max-width: 280px !default; // 56 * 5
+
+$md-menu-item-height: 48px !default;
+$md-menu-font-size: 16px !default;
+$md-menu-side-padding: 16px !default;
+
+option {
+	display: block;
+	line-height: $md-menu-item-height;
+	height: $md-menu-item-height;
+	padding: 0 $spacing-half;
+
+	font-size: 14px;
+	font-family: $font-family-sans;
+	text-align: start;
+	text-decoration: none; // necessary to reset anchor tags
+
+	&[disabled] {
+		cursor: default;
+	}
+
+	md-icon {
+		margin-right: 16px;
+
+		[dir='rtl'] & {
+			margin-left: 16px;
+		}
+	}
+
+	background-color: white;
+	border-bottom: 1px solid $color-light;
+
+	&:hover {
+		background-color:$color-gray-xl;
+		color: $color-dark;
+	}
+
+	position: relative;
+	cursor: pointer;
+	outline: none;
+
+	&[aria-disabled='true'] {
+		cursor: default;
+		user-select: none;
+	}
+}
