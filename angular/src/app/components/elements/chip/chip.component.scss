@@ -1,0 +1,23 @@
+@import "./../../../../styles/utils/utils";
+
+:host,
+.chip{
+	display: inline-flex;
+	flex-direction: row nowrap;
+	height: 24px;
+	border-radius: 12px;
+
+	padding: 0 $spacing-half 0 0;
+	background-color: $color-light;
+
+
+	&__actions {
+		flex: 0 0 auto;
+		margin-right: $spacing-half;
+	}
+
+	&__text {
+		flex: 0 0 auto;
+		margin-right: $spacing-quarter;
+	}
+}
