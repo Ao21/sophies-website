@@ -6,6 +6,7 @@ import {
 	DateField,
 	AssetField,
 	CheckboxField,
+	MultiField,
 	FieldGroup
 } from './../components/form/models/';
 
@@ -29,6 +30,16 @@ export const CONFIG_FIELDS = [
 			label: 'Required',
 			required: false
 		}
+	},
+	<MultiField>{
+		id: 'categories',
+		key: 'categories',
+		type: 'multi',
+		config: {
+			label: 'Enter a Category',
+			required: true,
+			placeholder: 'Type a category',
+		}
 	}
 ];
 export const DEFAULT_FIELD_FIELDS = [
@@ -50,6 +61,30 @@ export const DEFAULT_FIELD_FIELDS = [
 			label: 'Config Key'
 		},
 		childFields: CONFIG_FIELDS
+	}
+];
+
+
+export const ASSET_FIELD_FIELDS = [
+	<FieldGroup>{
+		id: 'config',
+		key: 'config',
+		type: 'group',
+		config: {
+			label: 'Config Key'
+		},
+		childFields: [
+			{
+				id: 'max',
+				key: 'max',
+				type: 'number',
+				value: 1,
+				config: {
+					label: 'Maximum Amount of Assets',
+					required: true
+				}
+			}
+		]
 	}
 ];
 
