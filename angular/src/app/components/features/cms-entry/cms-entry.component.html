@@ -2,12 +2,25 @@
   <h2>Create a new Entry</h2>
   <section class="capsule">
     <div class="capsule__content">
-      <dynamic-form></dynamic-form>
+      <dynamic-form #form [fields]="defaultEntryForm" emitOnInit="true" (changes)="formUpdate($event)"></dynamic-form>
+      <block 
+        *ngFor="let block of blocks;let index = index" 
+        (changes)="blockUpdate($event, block, index)"  
+        (orderUpdate)="reorderBlock($event, block, index)"
+        (delete)="removeBlock($event)"
+        [block]="block">
+      </block>
+      <block-selector (select)="addBlock($event)"></block-selector>
     </div>
-    
   </section>
-  
+
 </section>
 <aside>
-  <button [routerLink]="['/',{ outlets: { popup: ['compose'] } }]">Open Popup</button>
+  <section class="capsule">
+    <div class="capsule__content">
+      <dynamic-form #sideForm [fields]="defaultEntrySideForm" emitOnInit="true" (changes)="sideFormUpdate($event)"></dynamic-form>
+      <button [disabled]="!form.form.valid || !sideForm.form.valid" (click)="saveEntry()" class="button">Save</button>
+      <button (click)="previewArticle()" class="button">Preview</button>
+    </div>
+  </section>
 </aside>

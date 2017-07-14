@@ -29,5 +29,12 @@
 	.entries {
 		grid-area: content;
 		padding: $spacing-double $spacing-one-half;
+		position: relative;
+		&__new {
+			position: absolute;
+			right: 2rem;
+			top: 1rem;
+
+		}
 	}
 }

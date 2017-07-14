@@ -4,5 +4,8 @@
   </header>
 </nav>
 <div class="entries">
-<entry-list></entry-list>
+  <div class="entries__new">
+    <button [routerLink]="['./new']" class="button button--tiny">New Entry</button>
+  </div>
+ <entry-list (listItemEvent)="triggerFieldEvent($event)" [fieldConfig]="fieldsConfig" [entries]="entries$ | async | select: 'articles'"></entry-list>
 </div>
