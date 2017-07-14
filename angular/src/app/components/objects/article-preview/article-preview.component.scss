@@ -1,0 +1,16 @@
+
+@import "./../../../../styles/utils/utils";
+:host,
+.article-preview {
+    height: calc(100vh - 60px);
+    width: calc(100% - 4rem);
+    margin-left: 4rem;
+    float: left;
+    z-index: 99999;
+    display: flex;
+    background-color: white;
+
+    overflow: auto;
+
+
+}
