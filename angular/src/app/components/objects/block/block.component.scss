@@ -1,0 +1,61 @@
+@import "./../../../../styles/utils/utils";
+
+:host {
+	float: left;
+	width: 100%;
+	margin-bottom: $spacing-whole;
+
+	header {
+		display: flex;
+		background-color: $color-background-dark;
+		color: $color-dark;
+		font-weight: 600;
+		padding: $spacing-half $spacing-whole;
+		transition: all 1.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		&.is-valid {
+			background-color: $color-green;
+		}
+		p {
+			flex: 1 1 auto;
+			margin: 0;
+		}
+		.actions {
+			flex: 0 0 auto;
+			display: flex;
+			align-items: center;
+			img {
+				flex: 0 0 12px;
+				margin-left: $spacing-half;
+				max-height: 12px;
+				opacity: 0.7;
+				&:hover {
+					opacity: 1;
+				}
+			}
+			svg {
+                flex: 0 0 24px;
+                width: 24px;
+                fill: white;
+				margin-left: $spacing-half;
+				max-height: 24px;
+				opacity: 0.7;
+				&:hover {
+					opacity: 1;
+				}
+			}
+
+			.down {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	section {
+		background-color: $color-background-light;
+		padding: $spacing-half $spacing-whole;
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+	}
+}
