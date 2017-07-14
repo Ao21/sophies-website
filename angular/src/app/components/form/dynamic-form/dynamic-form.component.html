@@ -17,6 +17,11 @@
     <select-field placeholder="name" [question]="field" [formControl]="getFormControl(field.key)" *ngIf="field.type === 'select'">
       <option *ngFor="let option of field.options" [value]="option.value">{{option.name}}</option>
     </select-field>
+    <multi-field 
+      *ngIf="field.type === 'multi'" 
+      [question]="field"
+      [formControl]="getFormControl(field.key)">
+      </multi-field>
     <dynamic-form subForm="true" *ngIf="field.type === 'group'" [form]="getFormControl(field.key)" [fields]="field.childFields"></dynamic-form>
   </div>
 </form>

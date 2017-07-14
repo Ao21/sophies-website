@@ -11,6 +11,7 @@ import { CheckboxFieldModule } from './../fields/checkbox-field/checkbox-field.m
 import { DateFieldModule } from './../fields/date-field/date-field.module';
 import { AssetFieldModule } from './../fields/asset-field/asset-field.module';
 import { SelectFieldModule } from './../fields/select-field/select-field.module';
+import { MultiFieldModule } from './../fields/multi-field/multi-field.module';
 
 import { OptionModule } from './../../../core/';
 
@@ -26,7 +27,8 @@ import { OptionModule } from './../../../core/';
 		CheckboxFieldModule,
 		DateFieldModule,
 		AssetFieldModule,
-		SelectFieldModule
+		SelectFieldModule,
+		MultiFieldModule
 	],
 	declarations: [DynamicFormComponent],
 	exports: [DynamicFormComponent]

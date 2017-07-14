@@ -42,7 +42,6 @@ export class DynamicFormComponent
 
 	ngOnInit() {
 		if (this.subForm) {
-			console.log(this.form);
 			return this.initSubs();
 		}
 
