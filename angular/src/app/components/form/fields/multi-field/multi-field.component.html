@@ -1,0 +1,9 @@
+<label [for]="question.key">{{question.config?.label}}</label>
+<section [formGroup]="form" class="multi-field__input">
+  <!-- TODO: Reinsert placeholder when bug with grid/input in chrome is fixed  -->
+  <input formControlName="multiInput" #field type="text">
+  <button (click)="addItem(field.value)" class="multi-field__input-button" class="button button--green">Add</button>
+  <article class="multi-field__tags">
+    <chip *ngFor="let item of value"  [value]="item" (trigger)="handleTriggerEvent($event)">{{item}}</chip>
+  </article>
+</section>

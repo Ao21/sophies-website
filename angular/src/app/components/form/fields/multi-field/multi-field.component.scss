@@ -1,0 +1,53 @@
+@import "./../../../../../styles/utils/utils";
+
+:host,
+.multi-field {
+	float: left;
+	width: 100%;
+	margin-bottom: $spacing-whole;
+
+	label {
+		@include o-label;
+	}
+
+	&__tags {
+			border-left: 1px solid $color-border-gray;
+			border-right: 1px solid $color-border-gray;
+			border-bottom: 1px solid $color-border-gray;
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			padding: $spacing-whole $spacing-half;
+			grid-area: tags;
+
+			display: flex;
+			flex-flow: row wrap;
+			chip {
+				flex: 0 0 auto;
+				margin-right: $spacing-half;
+				margin-bottom: $spacing-half;
+
+			}
+		}
+
+	&__input {
+		display: grid;
+
+		grid-template-rows: auto auto;
+		grid-template-columns: auto 80px;
+
+		grid-column-gap: $spacing-whole;
+
+		grid-template-areas: "input button" "tags .";
+
+		
+
+
+		&-button {
+			grid-area: button;
+		}
+		input {
+			@include o-input();
+			grid-area: input;
+		}
+	}
+}
