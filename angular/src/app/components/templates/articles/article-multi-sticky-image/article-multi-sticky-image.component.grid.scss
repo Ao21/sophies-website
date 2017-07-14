@@ -1,136 +1,142 @@
 @import "./../../../../../styles/utils/utils";
 
-:host, .article-multi-sticky-image, .article {
-  padding-top: $header-height;
+:host,
+.article-multi-sticky-image,
+.article {
+	
   display: grid;
-
-  @include mq(small) {
-    grid-template-columns: 1rem auto 1rem;
-    grid-template-rows: 60vh auto auto;
-
-    grid-template-areas: "image image image" ". header ." ". article .";
-    header {
-      grid-area: header;
-      align-self: center;
-      padding-top: $spacing-whole;
-    }
-
-    aside {
-      grid-area: image;
-      img {
-        object-position: top;
-      }
-    }
-
-    section {
-      grid-area: article;
-    }
-
-    &__title {
-      @include type-scale(1);
-    }
+  
+  &:nth-of-type(1){
+    padding-top: $header-height;
   }
 
-  @include mq(medium) {
-    grid-template-columns: $spacing-double 40% 10% auto;
-    grid-template-rows: $spacing-quad auto 100%;
-     grid-template-areas: "article article article image"
-      "article article article image"
-      "article article article image";
 
-    header {
-      grid-area: article;
-      grid-row: 2;
-      grid-column: 2 ;
-      max-width: 60vw;
-      z-index: 9999;
-    }
+  
 
-    section {
-      grid-area: article;
-      grid-column: 2;
-      grid-row: 3;
+	@include mq(small) {
+		grid-template-columns: 1rem auto 1rem;
+		grid-template-rows: 60vh auto auto;
 
-      display: grid;
+		grid-template-areas: "image image image" ". header ." ". article .";
+		header {
+			grid-area: header;
+			align-self: center;
+			padding-top: $spacing-whole;
+		}
 
-      grid-template-columns: 100%;
+		aside {
+			grid-area: image;
+			img {
+				object-position: top;
+			}
+		}
 
-      article {
-        grid-column: 1;
-      }
-    }
+		section {
+			grid-area: article;
+		}
 
-    aside {
-      grid-area: image;
-      height: 100vh;
-      position: sticky;
-      top: $header-height;
-    }
-    &__title {
-      @include type-scale(3);
-    }
-  }
+		&__title {
+			@include type-scale(1);
+		}
+	}
 
-  @include mq(wide) {
-    grid-template-columns: 10% 600px 10% auto;
-    grid-template-rows: $spacing-quad auto 100%;
-    grid-template-areas: "article article article image"
-      "article article article image"
-      "article article article image";
+	@include mq(medium) {
+		grid-template-columns: $spacing-double 40% 10% auto;
+		grid-template-rows: $spacing-quad auto 100%;
+		grid-template-areas: "article article article image"
+			"article article article image" "article article article image";
 
-    header {
-      grid-area: article;
-      grid-row: 2;
-      grid-column: 2 / span 3;
-      max-width: 60vw;
-      z-index: 9999;
-    }
+		header {
+			grid-area: article;
+			grid-row: 2;
+			grid-column: 2;
+			max-width: 60vw;
+			z-index: 9999;
+		}
 
-    section {
-      grid-area: article;
-      grid-column: 2;
-      grid-row: 3;
+		section {
+			grid-area: article;
+			grid-column: 2;
+			grid-row: 3;
 
-      display: grid;
+			display: grid;
 
-      article {
-        grid-column: 1;
+			grid-template-columns: 100%;
 
-      }
-    }
+			article {
+				grid-column: 1;
+			}
+		}
 
-    aside {
-      grid-area: image;
-      height: 100vh;
-      position: sticky;
-      top: $header-height;
-    }
+		aside {
+			grid-area: image;
+			height: 100vh;
+			position: sticky;
+			top: $header-height;
+		}
+		&__title {
+			@include type-scale(3);
+		}
+	}
 
-    &__date {
-      text-align: right;
-    }
-    &__title {
-      @include type-scale(4);
-      max-width: 800px;
-      color: $color-red;
-    }
-  }
+	@include mq(wide) {
+		grid-template-columns: 10% 600px 10% auto;
+		grid-template-rows: $spacing-quad auto 100%;
+		grid-template-areas: "article article article image"
+			"article article article image" "article article article image";
 
-  article {
-    padding-bottom: $spacing-quad;
-    h1 {
-      color: $color-gray-d;
-    }
-    p {
-      text-align: justify;
-    }
-  }
+		header {
+			grid-area: article;
+			grid-row: 2;
+			grid-column: 2 / span 3;
+			max-width: 60vw;
+			z-index: 9999;
+		}
 
-  aside {
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
+		section {
+			grid-area: article;
+			grid-column: 2;
+			grid-row: 3;
+
+			display: grid;
+
+			article {
+				grid-column: 1;
+			}
+		}
+
+		aside {
+			grid-area: image;
+			height: 100vh;
+			position: sticky;
+			top: $header-height;
+		}
+
+		&__date {
+			text-align: right;
+		}
+		&__title {
+			@include type-scale(4);
+			max-width: 800px;
+			color: $color-red;
+		}
+	}
+
+	article {
+		padding-bottom: $spacing-quad;
+		h1 {
+			color: $color-gray-d;
+		}
+		/deep/ p {
+			text-align: justify;
+		}
+	}
+
+	aside {
+		img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+	}
 }

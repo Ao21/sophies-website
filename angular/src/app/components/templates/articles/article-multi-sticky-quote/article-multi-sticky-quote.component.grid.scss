@@ -3,6 +3,7 @@
   padding-top: $header-height;
   display: grid;
 
+ 
   @include mq(small) {
     grid-template-columns: 1rem auto 1rem;
     grid-template-rows: "auto auto auto";
@@ -70,7 +71,7 @@
       color: $color-gray-d;
     }
 
-    p {
+    /deep/ p {
       text-align: justify;
     }
   }
