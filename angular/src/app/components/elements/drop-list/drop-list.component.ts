@@ -65,7 +65,8 @@ export class DropListComponent implements OnInit, AfterContentInit {
 			});
 	}
 
-	toggle() {
+	toggle($event: Event) {
+		$event.stopPropagation();
 		this.panelOpen ? this.close() : this.open();
 	}
 
@@ -91,7 +92,7 @@ export class DropListComponent implements OnInit, AfterContentInit {
 		this._optionSubscription = filter
 			.call(this.optionSelectionChanges, event => event.isUserInput)
 			.subscribe(event => {
-				console.log(event);
+				// console.log(event);
 			});
 	}
 

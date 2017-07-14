@@ -1,4 +1,4 @@
-<div class="drop-list__trigger" (click)="toggle()" #origin="cdkOverlayOrigin" #trigger cdk-overlay-origin>
+<div class="drop-list__trigger" (click)="toggle($event)" #origin="cdkOverlayOrigin" #trigger cdk-overlay-origin>
   <ng-content select="header"></ng-content>
 </div>
 
@@ -8,7 +8,7 @@
   [open]="panelOpen"
   [positions]="_positions"
   [width]="200"
-  [offsetY]="-8"
+  [offsetY]="-10"
   [offsetX]="12"
   (detach)="close()">
 
