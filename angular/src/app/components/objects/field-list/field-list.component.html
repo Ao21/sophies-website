@@ -1,0 +1,1 @@
+<button [disabled]="checkIfUsed(entry)" class="button" (click)="selectField(entry)" *ngFor="let entry of (entries$ | async | select: 'fields')">{{entry.config.label}}</button>

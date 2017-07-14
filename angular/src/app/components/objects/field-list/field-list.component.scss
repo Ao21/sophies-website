@@ -1,0 +1,11 @@
+@import "./../../../../styles/utils/utils";
+
+:host {
+    display: flex;
+    flex-flow: column nowrap;
+
+    button {
+        margin-bottom: $spacing-half;
+        margin-left: 0;
+    }
+}
