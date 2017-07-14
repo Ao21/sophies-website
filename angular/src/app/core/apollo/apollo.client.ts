@@ -23,6 +23,18 @@ const myFragmentMatcher = new IntrospectionFragmentMatcher({
 						},
 						{
 							name: 'FieldGroup'
+						},
+						{
+							name: 'AssetField'
+						},
+						{
+							name: 'TextAreaField'
+						},
+						{
+							name: 'ToggleField'
+						},
+						{
+							name: 'CheckboxField'
 						}
 					]
 				},
@@ -38,6 +50,18 @@ const myFragmentMatcher = new IntrospectionFragmentMatcher({
 						},
 						{
 							name: 'FieldGroup'
+						},
+						{
+							name: 'AssetField'
+						},
+						{
+							name: 'TextAreaField'
+						},
+						{
+							name: 'ToggleField'
+						},
+						{
+							name: 'CheckboxField'
 						}
 					]
 				},
