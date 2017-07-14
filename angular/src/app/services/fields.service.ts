@@ -37,10 +37,10 @@ export class FieldService {
 	getFields() {
 		this.apollo.query({ query: fieldsQuery }).map(x => x.data).subscribe(
 			next => {
-				console.log(next);
+				// console.log(next);
 			},
 			err => {
-				console.log(err);
+				// console.log(err);
 			}
 		);
 	}
