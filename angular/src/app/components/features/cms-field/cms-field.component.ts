@@ -18,6 +18,7 @@ import * as _ from 'lodash';
 import {
 	CMS_SIDE_FIELDS,
 	DEFAULT_FIELD_FIELDS,
+	ASSET_FIELD_FIELDS,
 	TEXT_FIELD_FIELDS
 } from './../../../fields/cms-fields.fields';
 
@@ -40,6 +41,8 @@ export class CmsFieldComponent implements OnInit {
 
 	data: any = {};
 
+	previousType: string;
+
 	constructor(
 		private apollo: Apollo,
 		private router: Router,
@@ -51,6 +54,7 @@ export class CmsFieldComponent implements OnInit {
 	ngOnInit() {
 		this.route.data.subscribe(next => {
 			this.data = next;
+			this.previousType = next.field.type;
 			this.sideForm = this.fieldControlService.getFields(
 				CMS_SIDE_FIELDS,
 				next
@@ -79,6 +83,14 @@ export class CmsFieldComponent implements OnInit {
 				id: this.data.field.id
 			});
 		}
+
+		if (this.previousType !== this.form.type) {
+			query = CreateFieldMutation;
+			variables = _.assign({}, variables, {
+				previousType: this.previousType
+			});
+		}
+
 		this.apollo.mutate({
 			mutation: query,
 			variables: variables,
@@ -101,8 +113,13 @@ export class CmsFieldComponent implements OnInit {
 					...TEXT_FIELD_FIELDS
 				]);
 				break;
-			case 'textarea':
-			case 'date':
+			case 'asset':
+				fieldsToMerge = _.merge([
+					...DEFAULT_FIELD_FIELDS,
+					...ASSET_FIELD_FIELDS
+				]);
+				break;
+			default:
 				fieldsToMerge = [...DEFAULT_FIELD_FIELDS];
 				break;
 		}

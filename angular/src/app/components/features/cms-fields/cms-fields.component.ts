@@ -46,13 +46,13 @@ export class CmsFieldsComponent implements OnInit {
 			type: 'settings',
 			options: [
 				{
+					name: 'Edit',
+					trigger: 'EDIT'
+				},
+				{
 					name: 'Delete',
 					trigger: 'DELETE'
 				},
-				{
-					name: 'Edit',
-					trigger: 'EDIT'
-				}
 			]
 		}
 	];
@@ -85,4 +85,5 @@ export class CmsFieldsComponent implements OnInit {
 			query: GetAllFieldsQuery
 		});
 	}
+
 }
