@@ -5,6 +5,7 @@ import { CheckboxFieldModule } from './checkbox-field/checkbox-field.module';
 import { ToggleFieldModule } from './toggle-field/toggle-field.module';
 import { DateFieldModule } from './date-field/date-field.module';
 import { AssetFieldModule } from './asset-field/asset-field.module';
+import { MultiFieldModule } from './multi-field/multi-field.module';
 
 @NgModule({
 	imports: [
@@ -13,7 +14,8 @@ import { AssetFieldModule } from './asset-field/asset-field.module';
 		CheckboxFieldModule,
 		ToggleFieldModule,
 		DateFieldModule,
-		AssetFieldModule
+		AssetFieldModule,
+		MultiFieldModule
 	],
 	declarations: [],
 	exports: [
@@ -21,7 +23,8 @@ import { AssetFieldModule } from './asset-field/asset-field.module';
 		CheckboxFieldModule,
 		ToggleFieldModule,
 		DateFieldModule,
-		AssetFieldModule
+		AssetFieldModule,
+		MultiFieldModule
 	]
 })
 export class FieldsModule {}

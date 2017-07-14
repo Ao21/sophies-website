@@ -2,7 +2,7 @@ export interface BaseFieldConfig {
 	label?: string;
 	placeholder?: string;
 	required?: boolean;
-	validators?: [string];
+	validators?: string[];
 	description?: string;
 }
 

@@ -7,3 +7,4 @@ export * from './asset-field.model';
 export * from './textarea-field.model';
 export * from './select-field.model';
 export * from './field-group.model';
+export * from './multi-field.model';
