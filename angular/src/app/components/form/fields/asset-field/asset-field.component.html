@@ -1,5 +1,17 @@
 <label [for]="question.key">{{question.config?.label}}</label>
 <section *ngIf="question.assetType==='img'">
-  <button class="button" *ngIf="value.length === 0">+ Add Asset</button>
-  <article *ngFor="let item of value"></article>
+  <button [routerLink]="['/',{ outlets: { popup: ['compose', question.id] } }]" class="button" *ngIf="value.length === 0">+ Add Asset</button>
+  <article class="asset" *ngFor="let item of assets">
+    <img src="{{item.path}}" alt="">
+    <p>{{item.originalname}}</p>
+    <svg (click)="removeItem(item)" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+      <title>minus</title>
+      <g id="Group-6">
+        <circle class="circle" fill="#D8D8D8" cx="50" cy="50" r="50"></circle>
+        <rect class="line" fill="#FFFFFF" x="18.5185185" y="48.1481481" width="62.962963" height="7.40740741" rx="3.7037037"></rect>
+      </g>
+    </svg>
+  </article>
+  <button [routerLink]="['/',{ outlets: { popup: ['compose', question.id] } }]" class="button" *ngIf="value.length > 0 && value.length < max">+ Add Asset</button>
 </section>

@@ -6,6 +6,7 @@ import {
 	ChangeDetectorRef,
 	Input,
 	EventEmitter,
+	OnDestroy,
 	Renderer2,
 	ElementRef,
 	Output,
@@ -13,8 +14,14 @@ import {
 } from '@angular/core';
 
 import { BaseField } from './../../models/field.model';
-import { isPresent } from './../../../../core/utils/facade';
+import {
+	isPresent,
+	isPrimitive,
+	isJsObject
+} from './../../../../core/utils/facade';
 import { coerceBooleanProperty } from './../../../../core/coercion/boolean-property';
+
+import { Subscription } from 'rxjs/Rx';
 
 import {
 	NG_VALUE_ACCESSOR,
@@ -27,7 +34,12 @@ import {
 	mixinDisabled
 } from './../../../../core/common-behaviours/';
 
+import * as _ from 'lodash';
+import { AssetService, AssetShare } from './../../../../services/asset.service';
 import { Asset, AssetField } from './../../models/asset-field.model';
+
+import { Apollo } from 'apollo-angular';
+import { GetAllAssetsQuery } from './../../../../queries/assets.query';
 
 /**
  * Provider Expression that allows AssetField to register as a ControlValueAccessor. This
@@ -58,12 +70,18 @@ export const _AssetFieldMixinBase = mixinDisabled(AssetFieldBase);
 	styleUrls: ['./asset-field.component.scss']
 })
 export class AssetFieldComponent extends _AssetFieldMixinBase
-	implements OnInit {
+	implements OnInit, OnDestroy {
 	change: EventEmitter<AssetFieldChange> = new EventEmitter();
-	private _value: Asset[] = [];
+	private _value: any[] = [];
 	private _required: boolean;
 
 	@Input() question: AssetField;
+
+	@Input() max = 1;
+
+	assets: Asset[];
+
+	sub: Subscription;
 
 	/** Whether the checkbox is required. */
 	@Input()
@@ -77,24 +95,56 @@ export class AssetFieldComponent extends _AssetFieldMixinBase
 	@Input()
 	set value(v) {
 		this._value = v;
+		this.getAssets(v);
+		this.onChange(v);
 	}
 	get value() {
 		return this._value;
 	}
 
 	private onTouched: () => any = () => {};
-	private _controlValueAccessorChangeFn: (value: any) => void = () => {};
+	private onChange: (value: any) => void = () => {};
 
 	constructor(
 		renderer: Renderer2,
 		elementRef: ElementRef,
+		private apollo: Apollo,
+		private assetService: AssetService,
 		private _changeDetectorRef: ChangeDetectorRef
 	) {
 		super(renderer, elementRef);
 	}
 
 	ngOnInit() {
-		console.log(this.question);
+		this.sub = this.assetService.assetSubject.subscribe(next => {
+			if (next.id === this.question.id) {
+				this.value = [...this.value, ...next.ids];
+			}
+		});
+	}
+
+	getAssets(ids?: string[]) {
+		const assets = this.apollo
+			.query({ query: GetAllAssetsQuery })
+			.map((x: any) => x.data.assets)
+			.map(x => {
+				return _.filter(x, (asset: Asset) => {
+					return _.find(ids, id => id === asset.id);
+				});
+			})
+			.subscribe((next: any) => {
+				this.assets = next;
+				if (this.assets.length === 0 && this.value.length !== 0){
+					this.value = [];
+				}
+				this._changeDetectorRef.detectChanges();
+			});
+	}
+
+	removeItem($item) {
+		this.value = _.filter(this.value, value => {
+			return value !== $item.id;
+		});
 	}
 
 	/**
@@ -111,7 +161,7 @@ export class AssetFieldComponent extends _AssetFieldMixinBase
 	* @param fn Function to be called on change.
 	*/
 	registerOnChange(fn: (value: any) => void) {
-		this._controlValueAccessorChangeFn = fn;
+		this.onChange = fn;
 	}
 
 	/**
@@ -131,5 +181,9 @@ export class AssetFieldComponent extends _AssetFieldMixinBase
 	 */
 	setDisabledState(isDisabled: boolean): void {
 		this.disabled = isDisabled;
+	}
+
+	ngOnDestroy() {
+		this.sub.unsubscribe();
 	}
 }

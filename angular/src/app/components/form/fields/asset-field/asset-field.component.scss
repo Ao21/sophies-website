@@ -3,6 +3,28 @@
 :host {
 	float: left;
 	margin-bottom: $spacing-whole;
+	width: 100%;
+
+	.asset {
+		display: flex;
+		width: 100%;
+		margin-bottom: $spacing-half;
+		img, svg {
+			flex: 0 0 25px;
+			max-height: 25px;
+		}
+		p {
+			margin: 0 $spacing-whole 0 $spacing-half;
+			flex: 1 0 auto;
+		}
+
+		svg:hover {
+			.circle {
+				fill: $color-red-l;
+			}
+		}
+	}
+
 
 	label {
 		@include o-label();
