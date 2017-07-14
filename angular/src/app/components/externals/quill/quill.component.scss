@@ -10,16 +10,15 @@
   @include o-label();
   float: left;
   width: 100%;
-
 }
 textarea-field {
-   float: left;
-   clear: both;
-   min-height: 175px;
-   width: 100%;
-   margin-bottom: $spacing-whole;
- }
- 
+  float: left;
+  clear: both;
+  min-height: 175px;
+  width: 100%;
+  margin-bottom: $spacing-whole;
+}
+
 .ql-container {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
@@ -28,6 +27,7 @@ textarea-field {
   margin: 0px;
   position: relative;
   min-height: 130px;
+  background-color: white;
 }
 .ql-container.ql-disabled .ql-tooltip {
   visibility: hidden;
@@ -396,7 +396,7 @@ textarea-field {
   text-align: right;
 }
 .ql-editor.ql-blank::before {
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
   @include type-scale(0);
   content: attr(data-placeholder);
   font-style: italic;
