@@ -125,6 +125,7 @@ export class DateFieldComponent extends _DateFieldMixinBase implements OnInit {
 				this.value = moment(derrivedDate, 'DD/MM/YYYY').format(
 					'DD/MM/YYYY'
 				);
+				this.onTouched();
 			} else {
 				this.value = '';
 				this.dateControl.markAsPristine();

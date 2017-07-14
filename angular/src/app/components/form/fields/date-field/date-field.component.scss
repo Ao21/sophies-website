@@ -12,6 +12,7 @@
 		float: left;
 		width: auto;
 		padding: 0;
+		display: flex;
 	}
 
 	label {
@@ -28,6 +29,19 @@
 		position: relative;
 		border-right: 1px solid rgba(151,151,151,0.07);
 		
+	}
+
+	
+	&.ng-invalid.ng-touched{
+		.date-field__container {
+			border-color: $color-red-l;
+		}
+	}
+
+	&.ng-valid.ng-touched{
+		.date-field__container {
+			border-color: $color-green;
+		}
 	}
 
 }
