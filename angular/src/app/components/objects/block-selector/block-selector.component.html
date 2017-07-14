@@ -1,0 +1,7 @@
+<label>Add Blocks</label>
+<section>
+  <article (click)="handleClick(block)" class="block" *ngFor="let block of (blocks$ | async | select: 'blocks')">
+    <img src="{{block.img[0].path}}" alt="">
+    <p>{{block.name}}</p>
+  </article>
+</section>
