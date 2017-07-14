@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="33px" viewBox="0 0 28 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>article</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Entry" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-16.000000, -72.000000)" fill="#FFFFFF">
+            <g id="Sidebar">
+                <g id="article" transform="translate(16.000000, 72.000000)">
+                    <g>
+                        <g id="Group" transform="translate(4.253165, 18.096774)" fill-rule="nonzero">
+                            <rect id="Rectangle-path" x="0.0450126582" y="0.347032258" width="8.88875949" height="1.40551613"></rect>
+                            <rect id="Rectangle-path" x="0.0450126582" y="3.15735484" width="5.38025316" height="1.40551613"></rect>
+                            <rect id="Rectangle-path" x="6.12703797" y="3.15735484" width="4.21027848" height="1.40551613"></rect>
+                            <rect id="Rectangle-path" x="0.0450126582" y="5.96767742" width="2.10496203" height="1.40551613"></rect>
+                            <rect id="Rectangle-path" x="2.61817722" y="5.96767742" width="3.27493671" height="1.40551613"></rect>
+                            <rect id="Rectangle-path" x="0.0450126582" y="8.778" width="3.27493671" height="1.40551613"></rect>
+                            <rect id="Rectangle-path" x="3.7881519" y="8.778" width="4.67812658" height="1.40551613"></rect>
+                        </g>
+                        <g id="Group-2" transform="translate(15.594937, 4.967742)" fill-rule="nonzero">
+                            <rect id="Rectangle-path" x="0.165164557" y="0.0106451613" width="8.88875949" height="1.40516129"></rect>
+                            <rect id="Rectangle-path" x="0.165164557" y="2.82096774" width="3.27458228" height="1.40516129"></rect>
+                            <rect id="Rectangle-path" x="4.14187342" y="2.82096774" width="3.74278481" height="1.40516129"></rect>
+                            <rect id="Rectangle-path" x="0.165164557" y="5.63129032" width="2.10531646" height="1.40516129"></rect>
+                            <rect id="Rectangle-path" x="2.73832911" y="5.63129032" width="3.27458228" height="1.40516129"></rect>
+                            <rect id="Rectangle-path" x="6.48075949" y="5.63129032" width="3.27493671" height="1.40516129"></rect>
+                            <rect id="Rectangle-path" x="0.165164557" y="8.4416129" width="3.27458228" height="1.40480645"></rect>
+                            <rect id="Rectangle-path" x="3.90759494" y="8.4416129" width="4.67812658" height="1.40480645"></rect>
+                        </g>
+                        <g id="Group-3" transform="translate(4.253165, 4.967742)" fill-rule="nonzero">
+                            <rect id="Rectangle-path" x="0.0450126582" y="0.0106451613" width="8.42126582" height="8.43096774"></rect>
+                            <rect id="Rectangle-path" x="11.5654177" y="13.4760645" width="8.42126582" height="8.43096774"></rect>
+                        </g>
+                        <path d="M0.321822785,0.0606774194 L0.321822785,32.8467097 L27.9237975,32.8467097 L27.9237975,0.0606774194 L0.321822785,0.0606774194 Z M26.5198987,31.4411935 L1.72501266,31.4411935 L1.72501266,1.46583871 L26.5198987,1.46583871 L26.5198987,31.4411935 Z" id="Shape" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

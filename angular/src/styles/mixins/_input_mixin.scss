@@ -15,7 +15,7 @@
 }
 
 @mixin o-label() {
-	@include type-scale(0);
+	@include type-scale(-1);
 	margin-bottom: $spacing-quarter;
 	float: left;
 	font-weight: 600;
