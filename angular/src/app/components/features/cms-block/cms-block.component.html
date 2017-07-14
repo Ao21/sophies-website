@@ -1,0 +1,29 @@
+<section class="block">
+    <h2 *ngIf="!data?.block">Create a new Block</h2>
+    <h2 *ngIf="data?.block">Edit Block</h2>
+    <section class="capsule">
+        <div class="capsule__content">
+            <dynamic-form #form [fields]="formQuestions" emitOnInit="true" (changes)="fieldUpdates($event)"></dynamic-form>
+        </div>
+        <div class="capsule__content">
+            <h3>Fields</h3>
+            <div [dragula]='"first-bag"' [dragulaModel]='fields' class="field__container">
+                <div *ngFor="let field of fields" class="field">
+                    <p>{{field.config.label}}</p>
+                    <div class="field__actions">
+                        <img (click)="removeField(field)" src="assets/cms/icons/close.svg" alt=""></div>
+                </div>
+            </div>
+
+             <button (click)="createBlock(form.form.value)" [disabled]="!form?.form?.valid" class="button">
+                 <span *ngIf="!data?.block">Create Block</span>
+                 <span *ngIf="data?.block">Update Block</span>
+            </button>
+        </div>
+    </section>
+
+</section>
+<aside>
+    <h3>Fields</h3>
+    <field-list [selectedFields]="fields" (select)="handleFieldSelect($event)"></field-list>
+</aside>

@@ -1,0 +1,66 @@
+@import "./../../../../styles/utils/utils";
+
+:host {
+	background-color: $color-light-d;
+	display: grid;
+
+	grid-template-columns: auto [col-header-end] 400px;
+	grid-template-rows: auto auto;
+	height: 100%;
+
+	overflow: auto;
+
+	grid-template-areas: "block aside";
+
+	section.block {
+		grid-area: block;
+		padding: $spacing-whole $spacing-one-half;
+		height: calc(100vh - 60px);
+		overflow: auto;
+	}
+
+	.field__container {
+		margin-bottom: $spacing-whole;
+		float: left;
+		width: 100%;
+		.field {
+			float: left;
+			width: 100%;
+			display: flex;
+
+			padding: $spacing-quarter $spacing-quarter;
+			align-items: center;
+			&:nth-of-type(odd){
+				background-color: $color-light;
+			}
+			
+
+			p {
+				flex: 1 1 auto;
+				margin-bottom: 0;				
+			}
+
+			&__actions {
+				flex: 0 0 auto;
+				padding: 0 $spacing-half;
+				display: flex;
+				img {
+					align-items: center;
+					max-height: 24px;
+				}
+			}
+		}
+	}
+
+	.capsule {
+		@include o-capsule;
+	}
+
+	aside {
+		grid-area: aside;
+		overflow: auto;
+		padding: $spacing-whole $spacing-one-half;
+		height: calc(100vh - 60px);
+		background-color: white;
+	}
+}
