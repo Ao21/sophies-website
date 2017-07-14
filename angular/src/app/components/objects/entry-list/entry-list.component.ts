@@ -114,27 +114,18 @@ export class EntryListComponent
 		private _changeDetector: ChangeDetectorRef) { }
 
 	ngOnInit() {
-		if (this.query) {
-			this.entries = this.apollo.watchQuery({ query: this.query, fetchPolicy:  'network-only' })
-				.map((x) => x.data)
-				.map((x: any) => x.assets)
-				.do((x) => {
-					setTimeout(() => {
-						this._changeDetector.detectChanges();
-					});
-				});
-		}
+		// console.log(this.entries);
 	}
 
 	ngAfterViewInit(){
 		this._entries.changes.subscribe(next => {
-			// console.log(next);
+			console.log(next);
 		});
 	}
 
-	updateSelected(key, value) {
-		if (value) {
-			this._selected[key] = value;
+	updateSelected(key, checked, entry) {
+		if (checked) {
+			this._selected[key] = entry;
 		} else {
 			delete this._selected[key];
 		}

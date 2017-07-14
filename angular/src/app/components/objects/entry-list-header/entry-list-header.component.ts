@@ -12,6 +12,6 @@ export class EntryListHeaderComponent implements OnInit {
 	constructor() {}
 
   ngOnInit() {
-    console.log(this.fieldConfig);
+    // console.log(this.fieldConfig);
   }
 }

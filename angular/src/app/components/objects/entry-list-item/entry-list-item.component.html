@@ -1,7 +1,7 @@
 <checkbox-field #checkbox [value]="checked" (change)="updateChecked($event)"></checkbox-field>
 <ng-template ngFor let-item [ngForOf]="fieldConfig" let-i="index">
-	<img *ngIf="item.type === 'img'" class="entry-list-item__{{item.type}}" [src]="entry[item.field]" alt="">
-	<p *ngIf="item.type === 'text' || item.type === 'fluid'" class="entry-list-item__{{item.type}}">{{getFieldValue(entry,item.field)}}</p>
+	<img (click)="setChecked()" *ngIf="item.type === 'img'" class="entry-list-item__{{item.type}}" [src]="entry[item.field]" alt="">
+	<p (click)="setChecked()" *ngIf="item.type === 'text' || item.type === 'fluid'" class="entry-list-item__{{item.type}}">{{getFieldValue(entry,item.field)}}</p>
 </ng-template>
 <drop-list (trigger)="emitSettingsEvent($event)" *ngIf="settings" [entries]="settings.options">
 	<header><img src="assets/cms/icons/settings.svg" alt=""></header>

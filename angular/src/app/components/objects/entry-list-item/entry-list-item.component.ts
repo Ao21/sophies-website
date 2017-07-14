@@ -15,7 +15,11 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef
 } from '@angular/core';
-import { EntryListComponent, EntryListFieldConfig, EntryListConfig } from './../entry-list/entry-list.component';
+import {
+	EntryListComponent,
+	EntryListFieldConfig,
+	EntryListConfig
+} from './../entry-list/entry-list.component';
 
 import { UniqueSelectionDispatcher } from './../../../core/index';
 
@@ -40,7 +44,6 @@ export interface EntryListItem {
 	styleUrls: ['./entry-list-item.component.scss']
 })
 export class EntryListItemComponent implements OnInit, OnDestroy {
-
 	@Input() fieldConfig: EntryListFieldConfig[];
 	@Input() config: any;
 	private _checked = false;
@@ -58,7 +61,7 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 	settings: any;
 
 	/** Unregister function for _radioDispatcher **/
-	private _removeUniqueSelectionListener: () => void = () => { };
+	private _removeUniqueSelectionListener: () => void = () => {};
 
 	/** The value of this radio button. */
 	@Input()
@@ -82,7 +85,11 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 			this._checked = newCheckedState;
 
 			if (this.entryList) {
-				this.entryList.updateSelected(this.id, this._checked);
+				this.entryList.updateSelected(
+					this.id,
+					this._checked,
+					this.entry
+				);
 			}
 
 			if (newCheckedState) {
@@ -105,9 +112,6 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 	) {
 		this.entryList = entryList;
 
-
-
-
 		this._removeUniqueSelectionListener = _entryDispatcher.listen(
 			(id: string, name: string) => {
 				if (id !== this.id && name === this.name) {
@@ -121,6 +125,13 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 	getFieldValue(entry, field) {
 		return findPropertyDeep(entry, field);
 	}
+
+	setChecked(event) {
+		this.checkbox.writeValue(!this.checked);
+		this.checked = !this.checked;
+		this._changeDetector.detectChanges();
+	}
+
 	updateChecked(val: any) {
 		this.checked = val.checked;
 	}
@@ -138,6 +149,9 @@ export class EntryListItemComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		this.settings = _.find(this.fieldConfig, (field) => field.type === 'settings');
+		this.settings = _.find(
+			this.fieldConfig,
+			field => field.type === 'settings'
+		);
 	}
 }

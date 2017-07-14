@@ -1,2 +1,2 @@
 <entry-list-header [fieldConfig]="fieldConfig"></entry-list-header>
-<entry-list-item (trigger)="emitListItemEvent($event)" [fieldConfig]="fieldConfig" [config]="config" *ngFor="let entry of entries; let index = index; trackBy: trackByFn" [entry]="entry"></entry-list-item>
+<entry-list-item (trigger)="emitListItemEvent($event)" [fieldConfig]="fieldConfig" [config]="config" *ngFor="let entry of entries; let index = index; trackBy: trackByFn" [entry]="entry" [id]="entry?.id"></entry-list-item>
