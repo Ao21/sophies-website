@@ -7,6 +7,21 @@ export const GetAllAssetsQuery = gql`
 			id
 			path
 			originalname
+			dateCreated
 		}
+	}
+`;
+
+
+export const CreateAssetMutation = gql`
+mutation createAsset($originalname: String, $path: String, $mimetype:String, $filename: String ){
+  createAsset(asset:{originalname:$originalname, path: $path, mimetype: $mimetype, filename: $filename}){
+    id
+  }
+}`;
+
+export const RemoveAssetMutation = gql`
+	mutation removeAsset($id: ID!) {
+		removeAsset(id: $id)
 	}
 `;

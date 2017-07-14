@@ -1,45 +1,71 @@
 import gql from 'graphql-tag';
 
-export const DefaultFieldFragment = gql`
-	fragment defaultFields on Field {
-		... on TextField {
-			id
-			type
-			key
-			config {
-				label
-				placeholder
-				required
-			}
-			value
-		}
-		... on DateField {
-			id
-			type
-			key
-			config {
-				label
-				placeholder
-				required
-			}
-			value
+// tslint:disable:max-line-length
+
+export const FieldFragment = gql`
+	fragment defaultFields on FieldInterface {
+		id
+		type
+		key
+		config {
+			label
+			placeholder
+			required
+			categories
 		}
 	}
 `;
 
-export const CreateFieldMutation = gql`
-${DefaultFieldFragment}
-mutation createField($type: String!, $key: String!, $label: String!, $required: Boolean!, $placeholder: String!) {
-  createField(field: {type: $type, key: $key}, config: {label:$label, required: $required, placeholder: $placeholder}) {
+export const DefaultFieldFragment = gql`
+	${FieldFragment}
+	fragment allFields on Field {
+  ... on TextField {
     ...defaultFields
+    textValue: value
+  }
+  ... on AssetField {
+    ...defaultFields
+    assetValue: value {
+      id
+      originalname
+      category
+      dateCreated
+      id
+      path
+      mimetype
+    }
+  }
+  ... on DateField {
+    ...defaultFields
+    dateValue: value
+  }
+  ... on TextAreaField {
+    ...defaultFields
+    textareaValue: value
+  }
+  ... on ToggleField {
+    ...defaultFields
+    toggleValue: value
+  }
+  ... on CheckboxField {
+    ... defaultFields
+    checkboxValue: value
+  }
+}`;
+
+export const CreateFieldMutation = gql`
+	${DefaultFieldFragment}
+mutation createField($type: String!, $key: String!, $id: ID, $label: String, $required: Boolean, $placeholder: String, $previousType: String, $categories: [String], $max: Int) {
+  createField(field: {type: $type, key: $key, id: $id}, settings: {previousField: $previousType}, config: {label: $label, required: $required, placeholder: $placeholder, categories: $categories, max: $max}) {
+    ... allFields
   }
 }`;
 
 export const UpdateFieldMutation = gql`
 ${DefaultFieldFragment}
-mutation updateField($id: ID!, $type: String!, $key: String!, $label: String!, $required: Boolean!, $placeholder: String!) {
-  updateField(field: {id: $id, type: $type, key: $key}, config: {label:$label, required: $required, placeholder: $placeholder}) {
-    ...defaultFields
+mutation updateField($id: ID!, $type: String!, $key: String!, $label: String, $required: Boolean, $placeholder: String, $categories: [String], $max: Int) {
+  updateField(field: {id: $id, type: $type, key: $key}, config: {label:$label, required: $required, placeholder: $placeholder, categories: $categories, max: $max}) {
+    ...allFields
   }
 }`;
 
@@ -53,7 +79,7 @@ export const GetAllFieldsQuery = gql`
 	${DefaultFieldFragment}
 	query {
 		fields {
-			...defaultFields
+			...allFields
 		}
 	}
 `;
@@ -62,7 +88,7 @@ export const GetField = gql`
 	${DefaultFieldFragment}
 	query($id: ID!) {
 		field(id: $id) {
-			...defaultFields
+			...allFields
 		}
 	}
 `;
