@@ -4,6 +4,10 @@ import { BlockModel } from "./block.model";
 
 export const BlockSchema = new mongoose.Schema({
     name: String,
+    tag: String,
+    img: [{ type: mongoose.Schema.Types.ObjectId, ref: "Asset" }],
+    singleOnly: Boolean,
+    categories: [String],
     fields: [{ type: mongoose.Schema.Types.ObjectId, ref: "Field" }]
 });
 

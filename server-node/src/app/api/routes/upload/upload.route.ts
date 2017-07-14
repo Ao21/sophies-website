@@ -12,7 +12,7 @@ const multerStorage = multer.diskStorage({
 				return cb(err, null);
 			}
 			cb(null, raw.toString("hex") + extname(file.originalname))
-		})
+		});
 	}
 });
 const upload = multer({ storage: multerStorage });
@@ -35,10 +35,10 @@ export class UploadRoute {
 			// checkJwt,
 			upload.single("file"),
 			async (req: express.Request, res: express.Response) => {
-				const repo = new AssetRepository();
-				const fileInfo: any = req.file;
+				// const repo = new AssetRepository();
+				// const fileInfo: any = req.file;
 
-				await repo.create(fileInfo);
+				// await repo.create(fileInfo);
 				res.status(200).send(req.file);
 			}
 		);

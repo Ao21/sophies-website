@@ -1,9 +1,17 @@
 import * as mongoose from "mongoose";
 
 import { TextField } from "./field.mongodb";
-import { Field, FieldInput, FieldConfigInput } from "./field.graphql";
+import {
+	Field,
+	FieldInput,
+	FieldConfigInput,
+	FieldUpdateSettings
+} from "./field.graphql";
 
 import { GenericFieldRepository, getRepoType } from "./field.mongodb";
+
+import { AssetInput } from "../assets/assets.graphql";
+import { AssetInputSchema } from "../assets/assets.mongodb";
 
 import { MongooseResponse } from "./../../../common/mongo/generic-reponse";
 
@@ -26,14 +34,20 @@ export interface FieldInput extends mongoose.Document {
 	required?: boolean;
 	placeholder?: string;
 	options: [any];
-    childFields: [any];
-    config: FieldConfigInput
+	childFields: [any];
+	config: FieldConfigInput;
 }
 
 export interface FieldConfigInput extends mongoose.Document {
 	label?: string;
 	placeholder?: string;
 	required?: boolean;
+	categories?: string[];
+	max: number;
+}
+
+export interface FieldUpdateSettings extends mongoose.Document {
+	previousField: string;
 }
 
 export interface FieldModel extends mongoose.Document {
@@ -43,7 +57,9 @@ export interface FieldModel extends mongoose.Document {
 		label?: string;
 		placeholder?: string;
 		required?: boolean;
-		validators?: [string];
+		validators?: string[];
+		categories?: string[];
+		max: number
 	};
 	value?: any;
 	options: [any];
@@ -83,16 +99,31 @@ const create: GraphQLFieldConfig<any, any> = {
 	type: Field,
 	args: {
 		field: { type: FieldInput },
-		config: { type: FieldConfigInput }
+		assets: { type: AssetInput },
+		config: { type: FieldConfigInput },
+		settings: { type: FieldUpdateSettings }
 	},
 	async resolve(
 		root: any,
-		{ field, config }: { field: FieldInput; config: FieldConfigInput }
+		{
+			field,
+			assets,
+			config,
+			settings
+		}: {
+			field: FieldInput;
+			assets: AssetInputSchema;
+			config: FieldConfigInput;
+			settings: FieldUpdateSettings;
+		}
 	) {
+		if (settings.previousField) {
+			const previousType = getRepoType(settings.previousField);
+			await previousType.delete(field.id);
+		}
 		const repo = getRepoType(field.type);
 		field.config = config;
 		const response = await repo.create(field);
-		console.log("new", response);
 		return response;
 	}
 };
@@ -101,11 +132,22 @@ const update: GraphQLFieldConfig<any, any> = {
 	type: Field,
 	args: {
 		field: { type: FieldInput },
-		config: { type: FieldConfigInput }
+		config: { type: FieldConfigInput },
+		settings: { type: FieldUpdateSettings }
 	},
 	async resolve(
 		root: any,
-		{ field, config }: { field: FieldInput; config: FieldConfigInput }
+		{
+			field,
+			assets,
+			config,
+			settings
+		}: {
+			field: FieldInput;
+			assets: AssetInputSchema;
+			config: FieldConfigInput;
+			settings: FieldUpdateSettings;
+		}
 	) {
 		const repo = getRepoType(field.type);
 		field.config = config;
@@ -115,7 +157,6 @@ const update: GraphQLFieldConfig<any, any> = {
 		return field;
 	}
 };
-
 
 const remove: GraphQLFieldConfig<any, any> = {
 	type: GraphQLBoolean,
