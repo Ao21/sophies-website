@@ -6,6 +6,8 @@ import {
 	ChangeDetectorRef,
 	Input,
 	EventEmitter,
+	Self,
+	Optional,
 	Renderer2,
 	ElementRef,
 	Output
@@ -14,6 +16,7 @@ import { BaseField } from './../../models/field.model';
 import {
 	NG_VALUE_ACCESSOR,
 	ControlValueAccessor,
+	NgControl,
 	FormControl
 } from '@angular/forms';
 
@@ -86,6 +89,7 @@ export class InputFieldComponent extends _InputFieldMixinBase
 		private _changeDetectorRef: ChangeDetectorRef
 	) {
 		super(renderer, elementRef);
+
 	}
 
 	ngOnInit() {}
