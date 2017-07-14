@@ -2,7 +2,8 @@
 
 :host,
 .asset-manager {
-	min-height: calc(100vh - 150px);
+	height: calc(100vh - 80px);
+
 	width: calc(100% - 4rem);
 	margin-left: 4rem;
 	float: left;
@@ -38,6 +39,7 @@
 		grid-area: content;
 		padding: $spacing-whole $spacing-whole;
 		background-color: white;
+		overflow: auto;
 	}
 
 	footer {
