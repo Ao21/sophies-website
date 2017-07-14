@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
@@ -40,6 +40,7 @@ import { Dropzone } from './core/uploading/dropzone';
 		Dropzone
 	],
 	providers: [
+		Title,
 		...APP_ROUTING_PROVIDERS,
 		...SERVICES_MODULE],
 	bootstrap: [AppComponent]

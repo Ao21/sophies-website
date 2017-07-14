@@ -5,6 +5,7 @@ import { HomePageRoutes } from './pages/home-page/home-page.routes';
 import { ArticlePageRoutes } from './pages/article-page/article-page.routes';
 
 import { AssetManagerComponent } from './components/objects/asset-manager/asset-manager.component';
+import { ArticlePreviewComponent } from './components/objects/article-preview/article-preview.component';
 
 import { RESOLVE_MODULES } from './core/resolve/resolve.module';
 
@@ -12,8 +13,13 @@ import { PortfolioComponent } from './components/outlets/portfolio/portfolio.com
 
 const APP_ROUTES: Routes = [
 	{
-		path: 'compose',
+		path: 'compose/:id',
 		component: AssetManagerComponent,
+		outlet: 'popup'
+	},
+	{
+		path: 'preview/:id',
+		component: ArticlePreviewComponent,
 		outlet: 'popup'
 	},
 	{ path: '**', component: PortfolioComponent }
@@ -22,7 +28,7 @@ const APP_ROUTES: Routes = [
 // export const routing: any = RouterModule.forRoot(APP_ROUTES);
 
 @NgModule({
-	imports: [RouterModule.forRoot(APP_ROUTES, { enableTracing: true })],
+	imports: [RouterModule.forRoot(APP_ROUTES, { enableTracing: false })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }
