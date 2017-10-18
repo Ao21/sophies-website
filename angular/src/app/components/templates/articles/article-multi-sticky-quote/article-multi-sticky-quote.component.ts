@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { FieldControlService } from './../../../../services/field-control.service';
 import { Entry } from './../../../../queries/entries.query';
 import * as _ from 'lodash';
@@ -12,6 +12,10 @@ export class ArticleMultiStickyQuoteComponent implements OnInit {
 	private _fields: any;
 	@Input() entry: Entry;
 	@Input() isFirst = false;
+
+	@HostBinding('class.is-first') get classIsFirst() {
+		return this.isFirst;
+	}
 
 	@Input()
 	set fields(v) {

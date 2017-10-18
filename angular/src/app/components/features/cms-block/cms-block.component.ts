@@ -97,9 +97,11 @@ export class CmsBlockComponent implements OnInit, OnDestroy {
 					query: GetAllBlocksQuery
 				}
 			]
+		}).subscribe((next) => {
+			this.router.navigate(['./..'], { relativeTo: this.route });
 		});
 
-		this.router.navigate(['./..'], { relativeTo: this.route });
+
 	}
 
 	ngOnDestroy() {}

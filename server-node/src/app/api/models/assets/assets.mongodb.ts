@@ -20,7 +20,9 @@ export interface AssetInputSchema extends mongoose.Document {
 	dateCreated: Date;
 }
 
-AssetsSchema.virtual("id").get(() => this.id);
+AssetsSchema.virtual("id").get((id: any) => {
+	return id;
+});
 AssetsSchema.set("toObject", { virtuals: true });
 AssetsSchema.set("toJSON", { virtuals: true });
 

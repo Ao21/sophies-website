@@ -99,9 +99,11 @@ export class CmsFieldComponent implements OnInit {
 					query: GetAllFieldsQuery
 				}
 			]
+		}).subscribe((next) => {
+			this.router.navigate(['./..'], { relativeTo: this.route });
 		});
 
-		this.router.navigate(['./..'], { relativeTo: this.route });
+
 	}
 
 	mergeFields(type: string) {

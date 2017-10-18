@@ -3,15 +3,11 @@
 :host,
 .article-multi-sticky-image,
 .article {
-	
-  display: grid;
-  
-  &:nth-of-type(1){
-    padding-top: $header-height;
-  }
+	display: grid;
 
-
-  
+	&:nth-of-type(1) {
+		padding-top: $header-height;
+	}
 
 	@include mq(small) {
 		grid-template-columns: 1rem auto 1rem;

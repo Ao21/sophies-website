@@ -74,6 +74,8 @@ export class CmsEntriesComponent implements OnInit {
 						query: GetAllEntriesQuery
 					}
 				]
+			}).subscribe((next) => {
+				console.log(next);
 			});
 		}
 		if ($event.trigger === 'EDIT') {

@@ -87,6 +87,7 @@ const retrieve: GraphQLFieldConfig<any, any> = {
 	async resolve(root: any, { id }: { id: string }) {
 		const repo = new GenericFieldRepository();
 		const response = await repo.find().exec();
+		console.log(response);
 		return response;
 	}
 };
@@ -123,8 +124,13 @@ const create: GraphQLFieldConfig<any, any> = {
 		}
 		const repo = getRepoType(field.type);
 		field.config = config;
-		const response = await repo.create(field);
-		return response;
+		try {
+			const response = await repo.create(field);
+			console.log(response);
+			return response;
+		} catch (err) {
+			console.log(err);
+		}
 	}
 };
 

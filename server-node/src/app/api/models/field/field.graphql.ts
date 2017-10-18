@@ -15,7 +15,6 @@ import {
 
 import GraphQLJSON from 'graphql-type-json';
 
-
 import { Value } from './../base/base.graphql';
 
 import { Asset } from '../assets/assets.graphql';

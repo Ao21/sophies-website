@@ -71,7 +71,7 @@ import {
 	FloatPlaceholderType,
 	PlaceholderOptions,
 	MD_PLACEHOLDER_GLOBAL_OPTIONS
-} from './../../../../core/placeholder/placeholder-options';
+} from '../../../../core/placeholder/placeholder-options';
 
 import { SelectField } from './../../models/select-field.model';
 

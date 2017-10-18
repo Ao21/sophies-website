@@ -116,6 +116,7 @@ export class AssetFieldComponent extends _AssetFieldMixinBase
 	}
 
 	ngOnInit() {
+		console.log(this.max);
 		this.sub = this.assetService.assetSubject.subscribe(next => {
 			if (next.id === this.question.id) {
 				this.value = [...this.value, ...next.ids];

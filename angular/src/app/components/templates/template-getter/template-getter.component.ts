@@ -12,5 +12,8 @@ export class TemplateGetterComponent implements OnInit {
 
 	constructor() {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		console.log(this.blocks);
+		console.log(this.entry);
+	}
 }

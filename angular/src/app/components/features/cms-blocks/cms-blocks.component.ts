@@ -65,6 +65,8 @@ export class CmsBlocksComponent implements OnInit, OnDestroy {
 						query: GetAllBlocksQuery
 					}
 				]
+			}).subscribe((next) => {
+				console.log(next);
 			});
 		}
 		if ($event.trigger === 'EDIT') {

@@ -3,6 +3,7 @@
   @include grid-container;
   @include grid-collapse();
 
+
   &__article {
     @include grid-column(7);
     margin-top: $spacing-quad * 1.5;

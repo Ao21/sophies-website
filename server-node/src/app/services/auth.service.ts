@@ -1,9 +1,8 @@
 import * as jwt from "express-jwt";
 import * as jwksRsa from "jwks-rsa";
 
-console.log(jwksRsa);
 
-const secret = jwksRsa.expressJwtSecret({
+const secret = jwksRsa.ExpressJwtSecret({
 	cache: true,
 	rateLimit: true,
 	jwksRequestsPerMinute: 5,

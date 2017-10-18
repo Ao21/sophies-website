@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SelectPipe implements PipeTransform {
 	public transform(obj: any, name: string = '') {
+		console.log(obj);
 		if (obj && name !== '') {
 			// for Apollo decorator
 			if (obj[name]) {
@@ -13,6 +14,7 @@ export class SelectPipe implements PipeTransform {
 
 			// for Angular2Apollo.watchQuery
 			if (obj.data && obj.data[name]) {
+				console.log(obj.data[name]);
 				return obj.data[name];
 			}
 		}

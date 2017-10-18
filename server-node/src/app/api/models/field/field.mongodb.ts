@@ -66,7 +66,9 @@ export const AssetFieldSchema = new mongoose.Schema({
 	]
 });
 
-BaseFieldSchema.virtual("id").get(() => this.id);
+BaseFieldSchema.virtual("id").get((id: any) => {
+	return id;
+});
 BaseFieldSchema.set("toObject", { virtuals: true });
 BaseFieldSchema.set("toJSON", { virtuals: true });
 

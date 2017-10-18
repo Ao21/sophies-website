@@ -6,7 +6,7 @@ import { environment } from './../../../environments/environment';
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
 	// Change this to your upload POST address:
-	server: environment.urls.upload,
+	url: environment.urls.upload,
 	maxFilesize: 50,
 	acceptedFiles: 'image/*'
 };

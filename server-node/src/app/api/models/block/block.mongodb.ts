@@ -11,7 +11,9 @@ export const BlockSchema = new mongoose.Schema({
     fields: [{ type: mongoose.Schema.Types.ObjectId, ref: "Field" }]
 });
 
-BlockSchema.virtual("id").get(() => this.id);
+BlockSchema.virtual("id").get((id: any) => {
+	return id;
+});
 BlockSchema.set("toObject", { virtuals: true });
 BlockSchema.set("toJSON", { virtuals: true });
 

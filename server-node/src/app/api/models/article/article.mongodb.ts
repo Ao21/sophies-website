@@ -26,7 +26,9 @@ export const ArticleSchema = new mongoose.Schema({
 	}]
 });
 
-ArticleSchema.virtual("id").get(() => this.id);
+ArticleSchema.virtual("id").get((id: any) => {
+	return id;
+});
 ArticleSchema.set("toObject", { virtuals: true });
 ArticleSchema.set("toJSON", { virtuals: true });
 
